@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -9,12 +10,21 @@ import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 
+//import component
+import { ArrangementInfoComponent } from './views/arrangement-info/arrangement-info.component';
+
 export const routes: Routes = [
   {
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
   },
+  {
+    //設定路由
+    path: 'arrangementInfo',
+    component : ArrangementInfoComponent
+  },
+
   {
     path: '404',
     component: P404Component,
@@ -81,7 +91,7 @@ export const routes: Routes = [
       {
         path: 'widgets',
         loadChildren: () => import('./views/widgets/widgets.module').then(m => m.WidgetsModule)
-      }
+      },
     ]
   },
   { path: '**', component: P404Component }

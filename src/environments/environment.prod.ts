@@ -1,3 +1,11 @@
+import { commonPerFactory } from './../app/_core/_utility/common-per-factory';
+
+
+
 export const environment = {
-  production: true
+  production: false,
+  apiUrl: commonPerFactory.apiUrl
 };
+
+
+

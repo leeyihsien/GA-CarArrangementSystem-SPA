@@ -225,10 +225,119 @@ export const navItems: INavData[] = [
     ]
   },
 
+// car arrangement
   {
     title: true,
-    name: 'A1. Car Service',
+    name: 'A1. Car Service'
+  },
+  {
+    name: '1. Maintain',
+    url:  '/maintain',
+    icon: 'fa fa-cogs',
+    children: [
+      {
+        name: '1.1 Car Info Maintain',
+        url: 'maintain/car',
+        icon: 'fa fa-cogs'
+      },
+      {
+        name: '1.2 Driver Info Maintain',
+        url: 'maintain/driver',
+        icon: 'fa fa-cogs'
+      },
+      {
+        name: '1.3 Route Info Maintain',
+        url: 'maintain/route',
+        icon: 'fa fa-cogs'
+      },
+    ]
+  },
+
+    // //如果用戶有該功能權限則應顯示於navBar
+    // if (user.role.includes('wmsb.RackLocationMain') === true) {
+    //   navMaintain.children.push(navMaintain_RackLocation);
+    //   this.hasMaintain = true;
+    // }
+    // if (user.role.includes('wmsb.SettingT3Supplier') === true) {
+    //   navMaintain.children.push(navMaintain_T3Supplier);
+    //   this.hasMaintain = true;
+
+  {
+    name: '2. Transaction',
+    url:  '/car-arrangement',
+    icon: 'fa fa-cogs',
+    children: [
+      {
+        name: '2.1 Car Booking',
+        url: '/car-arrangement/booking',
+        icon: 'fa fa-cogs'
+      },
+      {
+        name: '2.2 Car Arrangement',
+        url: '/arrangementInfo',
+        icon: 'fa fa-cogs'
+      },
+    ]
   },
 
 
+  {
+    name: '3. Query',
+    url:  '/query',
+    icon: 'fa fa-cogs',
+    children: [
+      {
+        name: '3.1 Passenger Query',
+        url: '/query/booking',
+        icon: 'fa fa-cogs'
+      },
+      {
+        name: '3.2 Driver Query',
+        url: '/query/driver',
+        icon: 'fa fa-cogs'
+      },
+      {
+        name: '3.3  Manager Query',
+        url: '/query/manager',
+        icon: 'fa fa-cogs'
+      },
+    ]
+  },
+
+
+
+
+
+
 ];
+
+
+// @Injectable({
+//   providedIn: 'root'  // <- ADD THIS
+// })
+// export class NavItem {
+//   navItems: INavData[] = [];
+//   hasMaintain: boolean;
+//   hasTransaction: boolean;
+//   hasKanban: boolean;
+//   hasReport: boolean;
+//   hasQuery: boolean;
+
+//   constructor() { }
+
+//   getNav(){
+//     this.navItems = [];
+
+//     const navMaintain = {
+//       name: 'A1.1 Maintain',
+//       url:'',
+//       icon:'fa fa-cogs',
+//       children:[]
+//     };
+//   }
+
+
+
+
+
+// }
