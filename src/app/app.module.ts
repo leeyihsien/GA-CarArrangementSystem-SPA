@@ -1,4 +1,3 @@
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -7,15 +6,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
 
 
-//引入 httpClientModule`, formModule, reactive form module
+// 引入 httpClientModule`, formModule, reactive form module
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 
 
 // Import containers
@@ -25,7 +28,7 @@ import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 
-//import 需要用到的service
+// import 需要用到的service
 import { CarArrangementInfoService } from './_core/_services/car-arrangement-info.service';
 
 
@@ -49,6 +52,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { ArrangementInfoComponent } from './views/arrangement-info/arrangement-info.component';
+// import { ArrangementInfoRoutingModule } from './views/arrangement-info/arrangement-info-routing.module';
+// import { ArrangementInfoModule } from './views/arrangement-info/arrangement-info.module';
 
 @NgModule({
   imports: [
@@ -66,7 +71,9 @@ import { ArrangementInfoComponent } from './views/arrangement-info/arrangement-i
     ChartsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PaginationModule.forRoot()
+
   ],
   declarations: [
     AppComponent,
@@ -75,7 +82,7 @@ import { ArrangementInfoComponent } from './views/arrangement-info/arrangement-i
     P500Component,
     LoginComponent,
     RegisterComponent,
-    ArrangementInfoComponent,
+    ArrangementInfoComponent
   ],
 
   providers: [

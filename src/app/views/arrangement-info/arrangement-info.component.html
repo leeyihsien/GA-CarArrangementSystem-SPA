@@ -7,7 +7,7 @@
         <i class="fa fa-align-justify"></i> Test Table
       </div>
       <div class="card-body">
-        <table class="table table-bordered table-striped table-sm">
+        <table class="table table-bordered table-striped ">
 
           <!-- 宣告欄位名稱 -->
           <thead>
@@ -23,25 +23,27 @@
               <th>DriverId</th>
               <th>ArrangementStatus</th>
               <th>ArrangementRemark</th>
+              <th>UpdateAt</th>
            </tr>
           </thead>
          <!-- 宣告欄位名稱 -->
 
          <!-- 宣告資料表表身 -->
           <tbody>
-            <li *ngFor = "let data of arrangementData">
-              <td>{{data.ArrangementId}}</td>
-              <td>{{data.ArrangeDate}}</td>
-              <td>{{data.UserId}}</td>
-              <td>{{data.UserName}}</td>
-              <td>{{data.RouteId}}</td>
-              <td>{{data.GoTime}}</td>
-              <td>{{data.BackTime}}</td>
-              <td>{{data.CarId}}</td>
-              <td>{{data.DriverId}}</td>
-              <td>{{data.ArrangementStatus}}</td>
-              <td>{{data.ArrangementRemark}}</td>
-            </li>
+            <tr *ngFor="let data of arrangementData">
+              <td>{{data.arrangementId}}</td>
+              <td>{{data.arrangeDate}}</td>
+              <td>{{data.userId}}</td>
+              <td>{{data.userName}}</td>
+              <td>{{data.routeId}}</td>
+              <td>{{data.goTime}}</td>
+              <td>{{data.backTime}}</td>
+              <td>{{data.carId}}</td>
+              <td>{{data.driverId}}</td>
+              <td>{{data.arrangementStatus}}</td>
+              <td>{{data.arrangementRemark}}</td>
+              <td>{{data.updateAt}}</td>
+            </tr>
           </tbody>
           <!-- 宣告資料表表身 -->
         </table>
@@ -59,7 +61,15 @@
             <li class="page-item"><a class="page-link" href="#">Next</a></li>
           </ul>
         </nav> -->
+        <!-- <div class="d-flex">
+          <pagination *ngIf="arrangementData.length > 0" [boundaryLinks]="true" [totalItems]="pagination.totalItems" [(ngModel)]="pagination.currentPage"
+          [itemsPerPage]="pagination.itemsPerPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
+          nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [maxSize]=5>
+          </pagination>
+        </div> -->
         <!-- 頁面切換 -->
+
+
 
       </div>
     </div>
@@ -71,4 +81,3 @@
 
 
 
-<!-- <router-outlet></router-outlet> -->
