@@ -4,6 +4,6 @@ export const commonPerFactory= {
   serverSentTokenInAppModule: 'localhost:5000',
   linkSentTokenInAppModule: 'localhost:5000/api/auth',
 
-  apiUrl: 'https://localhost:44393/api/'
+  apiUrl: 'https://localhost:44393/api'
 
 }

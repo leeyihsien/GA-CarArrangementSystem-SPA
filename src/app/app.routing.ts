@@ -1,3 +1,6 @@
+import { RouteInfoComponent } from './views/route-info/route-info.component';
+import { CarInfoComponent } from './views/car-info/car-info.component';
+
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -12,6 +15,14 @@ import { RegisterComponent } from './views/register/register.component';
 
 //import component
 import { ArrangementInfoComponent } from './views/arrangement-info/arrangement-info.component';
+import { RouteInfoService } from './_core/_services/route-info.service';
+import { DriverInfoService } from './_core/_services/driver-info.service';
+import { CarDriverService } from './_core/_services/car-driver.service';
+import { CarInfoService } from './_core/_services/car-info.service';
+import { DriverInfoComponent } from './views/driver-info/driver-info.component';
+import { CarDriverComponent } from './views/car-driver/car-driver.component';
+
+
 
 export const routes: Routes = [
   {
@@ -23,6 +34,26 @@ export const routes: Routes = [
     //設定路由
     path: 'arrangementInfo',
     component : ArrangementInfoComponent
+  },
+  {
+    //設定路由
+    path: 'carInfo',
+    component : CarInfoComponent
+  },
+  {
+    //設定路由
+    path: 'driverInfo',
+    component : DriverInfoComponent
+  },
+  {
+    //設定路由
+    path: 'routeInfo',
+    component : RouteInfoComponent
+  },
+  {
+    //設定路由
+    path: 'carDriver',
+    component : CarDriverComponent
   },
 
   {

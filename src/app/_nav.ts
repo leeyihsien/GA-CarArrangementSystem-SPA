@@ -237,17 +237,17 @@ export const navItems: INavData[] = [
     children: [
       {
         name: '1.1 Car Info Maintain',
-        url: 'maintain/car',
+        url: 'carInfo',
         icon: 'fa fa-cogs'
       },
       {
         name: '1.2 Driver Info Maintain',
-        url: 'maintain/driver',
+        url: '/driverInfo',
         icon: 'fa fa-cogs'
       },
       {
         name: '1.3 Route Info Maintain',
-        url: 'maintain/route',
+        url: '/routeInfo',
         icon: 'fa fa-cogs'
       },
     ]
@@ -269,12 +269,12 @@ export const navItems: INavData[] = [
     children: [
       {
         name: '2.1 Car Booking',
-        url: '/arrangementinfo/booking',
+        url: '/arrangementInfo',
         icon: 'fa fa-cogs'
       },
       {
         name: '2.2 Car Arrangement',
-        url: '/arrangementInfo',
+        url: '/carDriver',
         icon: 'fa fa-cogs'
       },
     ]

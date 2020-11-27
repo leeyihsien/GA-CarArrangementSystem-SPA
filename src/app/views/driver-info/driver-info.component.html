@@ -1,0 +1,72 @@
+<p>driver-info works!</p>
+
+
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> Test Table
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered table-striped ">
+
+            <!-- 宣告欄位名稱 -->
+            <thead>
+              <tr>
+                <th>driverId</th>
+                <th>driverName</th>
+                <th>driverPhone</th>
+                <th>driverPhoto</th>
+                <th>createAt</th>
+                <th>updateAt</th>
+             </tr>
+            </thead>
+           <!-- 宣告欄位名稱 -->
+
+           <!-- 宣告資料表表身 -->
+            <tbody>
+              <tr *ngFor="let data of driverInfoData">
+                <td>{{data.driverId}}</td>
+                <td>{{data.driverName}}</td>
+                <td>{{data.driverPhone}}</td>
+                <td>{{data.driverPhoto}}</td>
+                <td>{{data.createAt}}</td>
+                <td>{{data.updateAt}}</td>
+              </tr>
+            </tbody>
+
+            <!-- 宣告資料表表身 -->
+          </table>
+
+          <!-- 頁面切換 -->
+          <!-- <nav>
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+              <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">4</a></li>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+          </nav> -->
+          <!-- <div class="d-flex">
+            <pagination *ngIf="arrangementData.length > 0" [boundaryLinks]="true" [totalItems]="pagination.totalItems" [(ngModel)]="pagination.currentPage"
+            [itemsPerPage]="pagination.itemsPerPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
+            nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [maxSize]=5>
+            </pagination>
+          </div> -->
+          <!-- 頁面切換 -->
+
+
+
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+  </div>
+

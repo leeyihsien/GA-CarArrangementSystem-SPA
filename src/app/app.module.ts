@@ -30,6 +30,11 @@ import { RegisterComponent } from './views/register/register.component';
 
 // import 需要用到的service
 import { CarArrangementInfoService } from './_core/_services/car-arrangement-info.service';
+import { DriverInfoService } from './_core/_services/driver-info.service';
+import { RouteInfoService } from './_core/_services/route-info.service';
+import { CarDriverService } from './_core/_services/car-driver.service';
+import { CarInfoService } from './_core/_services/car-info.service';
+
 
 
 const APP_CONTAINERS = [
@@ -52,6 +57,10 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { ArrangementInfoComponent } from './views/arrangement-info/arrangement-info.component';
+import { CarInfoComponent } from './views/car-info/car-info.component';
+import { DriverInfoComponent } from './views/driver-info/driver-info.component';
+import { RouteInfoComponent } from './views/route-info/route-info.component';
+import { CarDriverComponent } from './views/car-driver/car-driver.component';
 // import { ArrangementInfoRoutingModule } from './views/arrangement-info/arrangement-info-routing.module';
 // import { ArrangementInfoModule } from './views/arrangement-info/arrangement-info.module';
 
@@ -82,12 +91,20 @@ import { ArrangementInfoComponent } from './views/arrangement-info/arrangement-i
     P500Component,
     LoginComponent,
     RegisterComponent,
-    ArrangementInfoComponent
+    ArrangementInfoComponent,
+    CarInfoComponent,
+    DriverInfoComponent,
+    RouteInfoComponent,
+    CarDriverComponent
   ],
 
   providers: [
     // 宣告要用的service
     CarArrangementInfoService,
+    CarDriverService,
+    CarInfoService,
+    DriverInfoService,
+    RouteInfoService,
   {
     provide: LocationStrategy,
     useClass: HashLocationStrategy
