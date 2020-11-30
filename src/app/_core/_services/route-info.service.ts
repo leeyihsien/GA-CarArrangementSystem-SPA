@@ -1,4 +1,4 @@
-import { environment } from './../../../environments/environment';
+import { environment } from './../../../environments/environment.prod';
 import { PaginatedResult } from './../_models/pagination';
 import { HttpClient, HttpClientModule, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -18,4 +18,17 @@ export class RouteInfoService {
   getData() : Observable<any[]> {
     return this.http.get<any>(this.apiUrl + '/RouteInfoes');
   }
+
+  addData(val: any){
+    return this.http.post(this.apiUrl + '/RouteInfoes', val);
+  }
+
+  updateData(val: any){
+    return this.http.put(this.apiUrl + '/RouteInfoes', val);
+  }
+
+  deleteData(val: any){
+    return this.http.delete(this.apiUrl + '/RouteInfoes/' + val);
+  }
+
 }

@@ -237,7 +237,7 @@ export const navItems: INavData[] = [
     children: [
       {
         name: '1.1 Car Info Maintain',
-        url: 'carInfo',
+        url: '/carInfo',
         icon: 'fa fa-cogs'
       },
       {

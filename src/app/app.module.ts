@@ -1,3 +1,4 @@
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -7,6 +8,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -81,7 +83,8 @@ import { CarDriverComponent } from './views/car-driver/car-driver.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    ModalModule.forRoot()
 
   ],
   declarations: [
@@ -95,7 +98,7 @@ import { CarDriverComponent } from './views/car-driver/car-driver.component';
     CarInfoComponent,
     DriverInfoComponent,
     RouteInfoComponent,
-    CarDriverComponent
+    CarDriverComponent,
   ],
 
   providers: [

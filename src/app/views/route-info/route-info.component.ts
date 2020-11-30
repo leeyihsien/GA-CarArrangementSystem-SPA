@@ -1,7 +1,8 @@
 import { RouteInfoService } from './../../_core/_services/route-info.service';
 import { Pagination, PaginatedResult } from './../../_core/_models/pagination';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { ModalDirective, ModalModule } from 'ngx-bootstrap/modal';
 
 
 
@@ -11,12 +12,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RouteInfoComponent implements OnInit {
 
-  constructor(private service : RouteInfoService) { }
+  // @ViewChild('largeModal') public largeModal: ModalDirective;
 
-  routeInfoData : any = []
+
+  constructor(private service: RouteInfoService) { }
+
+  routeInfoData : any = [];
+
+  ModalTitle: string;
+  ActivateAddEditRouteComp: boolean = false;
+
+  newRoute:any;
+  routeId: string;
+  routeName:string;
+  routeStart: string;
+  routeEnd: string;
+  routeCostTime: number;
+  routeOneWay: boolean;
+  routeRoundTrip: boolean;
+  routeRemark: string;
+
 
   ngOnInit(): void {
     this.refreshData();
+
   }
 
 
@@ -25,6 +44,39 @@ export class RouteInfoComponent implements OnInit {
       this.routeInfoData = data ;
       console.log(this.routeInfoData);
     })
+  }
+
+  addClick(){
+    this.newRoute = {
+      routeId:"",
+      routeName:"",
+      routeStart: "",
+      routeEnd: "",
+      routeCostTime: 0,
+      routeOneWay: false,
+      routeRoundTrip: false,
+      routeRemark: ""
+    }
+
+  }
+
+  editClick(item){
+    this.newRoute=item;
+
+  }
+
+  closeClick(){
+    this.ActivateAddEditRouteComp=false;
+    this.refreshData();
+  }
+
+  deleteClick(){
+
+  }
+
+
+  getRouteType(){
+
   }
 
 }

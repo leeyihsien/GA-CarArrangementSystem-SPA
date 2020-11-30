@@ -1,4 +1,4 @@
-import { environment } from './../../../environments/environment';
+import { environment } from './../../../environments/environment.prod';
 import { PaginatedResult } from './../_models/pagination';
 import { HttpClient, HttpClientModule, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -18,5 +18,10 @@ export class CarDriverService {
 
   getData() :Observable<any[]>{
     return this.http.get<any>(this.apiUrl + '/CarDrivers');
+  }
+
+
+  addData(val: any){
+    return this.http.post(this.apiUrl + '/CarDrivers', val);
   }
 }
