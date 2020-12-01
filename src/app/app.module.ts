@@ -8,6 +8,9 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import{ SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
+
 
 
 
@@ -63,6 +66,8 @@ import { CarInfoComponent } from './views/car-info/car-info.component';
 import { DriverInfoComponent } from './views/driver-info/driver-info.component';
 import { RouteInfoComponent } from './views/route-info/route-info.component';
 import { CarDriverComponent } from './views/car-driver/car-driver.component';
+import { AddEditRouteInfoComponent } from './views/route-info/add-edit-route-info/add-edit-route-info.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { ArrangementInfoRoutingModule } from './views/arrangement-info/arrangement-info-routing.module';
 // import { ArrangementInfoModule } from './views/arrangement-info/arrangement-info.module';
 
@@ -84,8 +89,8 @@ import { CarDriverComponent } from './views/car-driver/car-driver.component';
     FormsModule,
     ReactiveFormsModule,
     PaginationModule.forRoot(),
-    ModalModule.forRoot()
-
+    ModalModule.forRoot(),
+    NgbModule,
   ],
   declarations: [
     AppComponent,
@@ -99,6 +104,7 @@ import { CarDriverComponent } from './views/car-driver/car-driver.component';
     DriverInfoComponent,
     RouteInfoComponent,
     CarDriverComponent,
+    AddEditRouteInfoComponent,
   ],
 
   providers: [

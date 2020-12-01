@@ -3,6 +3,8 @@ import { Pagination, PaginatedResult } from './../../_core/_models/pagination';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ModalDirective, ModalModule } from 'ngx-bootstrap/modal';
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss';
 
 
 
@@ -12,29 +14,35 @@ import { ModalDirective, ModalModule } from 'ngx-bootstrap/modal';
 })
 export class RouteInfoComponent implements OnInit {
 
-  // @ViewChild('largeModal') public largeModal: ModalDirective;
+  AddEditRouteInfo : boolean = false;
+  ModalTitle: string;
 
 
   constructor(private service: RouteInfoService) { }
 
   routeInfoData : any = [];
 
-  ModalTitle: string;
-  ActivateAddEditRouteComp: boolean = false;
 
   newRoute:any;
-  routeId: string;
-  routeName:string;
-  routeStart: string;
-  routeEnd: string;
-  routeCostTime: number;
-  routeOneWay: boolean;
-  routeRoundTrip: boolean;
-  routeRemark: string;
 
 
   ngOnInit(): void {
     this.refreshData();
+  }
+
+
+  addClick(){
+    this.ModalTitle = 'Add New Route';
+    this.newRoute = {
+      routeId:"",
+      routeName:"",
+      routeStart: "",
+      routeEnd: "",
+      routeCostTime: 0,
+      routeType:"",
+      routeRemark: ""
+    }
+    this.AddEditRouteInfo = true;
 
   }
 
@@ -46,37 +54,47 @@ export class RouteInfoComponent implements OnInit {
     })
   }
 
-  addClick(){
-    this.newRoute = {
-      routeId:"",
-      routeName:"",
-      routeStart: "",
-      routeEnd: "",
-      routeCostTime: 0,
-      routeOneWay: false,
-      routeRoundTrip: false,
-      routeRemark: ""
-    }
 
-  }
 
   editClick(item){
     this.newRoute=item;
-
+    this.ModalTitle = 'Edit Route Info';
+    this.AddEditRouteInfo = true;
   }
 
   closeClick(){
-    this.ActivateAddEditRouteComp=false;
     this.refreshData();
-  }
-
-  deleteClick(){
+    this.AddEditRouteInfo = false;
 
   }
 
-
-  getRouteType(){
-
+  deleteClick(item){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this imaginary file!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.service.deleteData(item.routeId).subscribe( data =>{
+          this.refreshData();
+        });
+        Swal.fire(
+          'Deleted!',
+          'Your imaginary file has been deleted.',
+          'success'
+        );
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelled',
+          'Your imaginary file is safe :)',
+          'error'
+        );
+      }
+    });
   }
+
 
 }

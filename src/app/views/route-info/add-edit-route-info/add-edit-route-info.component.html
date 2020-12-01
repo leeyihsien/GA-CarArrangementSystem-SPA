@@ -1,0 +1,59 @@
+<div class="form-group">
+  <label for="routeId">Route ID</label>
+  <input type="text" name="routeId" class="form-control" placeholder="Enter Route Id.." *ngIf="newRoute.routeId==''" [(ngModel)]="routeId" required>
+  <span class="help-block" *ngIf="newRoute.routeId==''" >Please enter the Route ID</span>
+  <input type="text" name="routeId" class="form-control" placeholder="Enter Route Id.." *ngIf="newRoute.routeId!=''" [(ngModel)]="routeId" disabled=true>
+  <span class="help-block" *ngIf="newRoute.routeId!=''" >Route ID can not be changed</span>
+  </div>
+
+  <div class="form-group">
+  <label for="routeName">Route Name</label>
+  <input type="text" name="routeName" class="form-control" placeholder="Enter Route Name.." [(ngModel)]="routeName">
+  </div>
+
+
+  <div class="form-group">
+  <label for="routeStart">Route Start</label>
+  <input type="text" name="routeStart" class="form-control" placeholder="Enter Route Start.." [(ngModel)]="routeStart">
+  </div>
+
+  <div class="form-group">
+  <label for="routeEnd">Route End</label>
+  <input type="text" name="routeEnd" class="form-control" placeholder="Enter Route End.." [(ngModel)]="routeEnd">
+  </div>
+
+  <div class="form-group">
+  <label for="routeCostTime">Route Cost Time (Hour) </label>
+  <select id="routeCostTime" name="routeCostTime" class="form-control" [(ngModel)]="routeCostTime">
+    <option value="0">Please select</option>
+    <option value="0.5">0.5</option>
+    <option value="1">1</option>
+    <option value="1.5">1.5</option>
+    <option value="2">2</option>
+    <option value="2.5">2.5</option>
+    <option value="3">3</option>
+  </select>
+  </div>
+
+
+  <div class="form-group">
+    <label for="routeType">Route Type</label>
+    <select id="routeType" name="routeType" class="form-control" [(ngModel)]="routeType">
+      <option value="0">Please select</option>
+      <option value="one-way">One-Way</option>
+      <option value="round-trip">Round-Trip</option>
+    </select>
+    </div>
+
+  <div class="form-group">
+  <label for="routeRemark">Route Remark</label>
+  <input type="text" name="routeRemark" class="form-control" placeholder="Enter Route Remark.." [(ngModel)]="routeRemark">
+  </div>
+
+
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-primary" *ngIf="newRoute.routeId==''" (click)=" addNewRoute()">Add</button>
+        <button type="button" class="btn btn-primary" *ngIf="newRoute.routeId!=''" (click)=" updateRoute()">Update</button>
+
+      </div>
