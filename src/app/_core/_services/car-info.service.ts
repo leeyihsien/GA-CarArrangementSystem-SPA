@@ -18,4 +18,17 @@ export class CarInfoService {
   getData():Observable<any[]> {
     return this.http.get<any>(this.apiUrl + '/CarInfoes');
   }
+
+
+  addData(val: any){
+    return this.http.post(this.apiUrl + '/CarInfoes', val, {observe: 'response'});
+  }
+
+  updateData(val: any){
+    return this.http.put(this.apiUrl + '/CarInfoes', val,{observe: 'response'});
+  }
+
+  deleteData(val: any){
+    return this.http.delete(this.apiUrl + '/CarInfoes/' + val);
+  }
 }

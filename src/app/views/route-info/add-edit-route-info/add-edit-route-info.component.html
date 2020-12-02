@@ -1,10 +1,19 @@
+<form class = "was-validated">
 <div class="form-group">
-  <label for="routeId">Route ID</label>
-  <input type="text" name="routeId" class="form-control" placeholder="Enter Route Id.." *ngIf="newRoute.routeId==''" [(ngModel)]="routeId" required>
-  <span class="help-block" *ngIf="newRoute.routeId==''" >Please enter the Route ID</span>
-  <input type="text" name="routeId" class="form-control" placeholder="Enter Route Id.." *ngIf="newRoute.routeId!=''" [(ngModel)]="routeId" disabled=true>
-  <span class="help-block" *ngIf="newRoute.routeId!=''" >Route ID can not be changed</span>
-  </div>
+    <label for="routeId" >Route ID</label>
+    <input type="text" id="routeId" name="routeId" class="form-control" placeholder="Enter Route Id.." *ngIf="newRoute.routeId==''" [(ngModel)]="routeId" required>
+    <div class="valid-feedback" >
+      Input is valid.
+    </div>
+    <div class="invalid-feedback">
+      Please create an new ID for the new route.
+    </div>
+    <div class="form-group">
+      <input type="text" name="routeId" class="form-control" placeholder="Enter Route Id.." *ngIf="newRoute.routeId!=''" [(ngModel)]="routeId" disabled=true>
+      <span class="help-block" *ngIf="newRoute.routeId!=''" >Route ID can not be changed</span>
+      </div>
+</div>
+</form>
 
   <div class="form-group">
   <label for="routeName">Route Name</label>
@@ -53,7 +62,7 @@
 
       <div class="modal-footer">
 
-        <button type="button" class="btn btn-primary" *ngIf="newRoute.routeId==''" (click)=" addNewRoute()">Add</button>
+        <button type="button" class="btn btn-primary" *ngIf="newRoute.routeId==''" (click)=" addNewRoute()" [disabled]="!routeId">Add</button>
         <button type="button" class="btn btn-primary" *ngIf="newRoute.routeId!=''" (click)=" updateRoute()">Update</button>
 
       </div>

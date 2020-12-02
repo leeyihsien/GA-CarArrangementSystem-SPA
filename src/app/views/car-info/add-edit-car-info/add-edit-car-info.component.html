@@ -1,0 +1,51 @@
+<form class = "was-validated">
+  <div class="form-group">
+      <label for="carId" >Car ID</label>
+      <input type="text" id="carId" name="routeId" class="form-control" placeholder="Enter Car Id.." *ngIf="newCar.carId==''" [(ngModel)]="carId" required>
+      <div class="valid-feedback" >
+        Input is valid.
+      </div>
+      <div class="invalid-feedback">
+        Please create an new ID for the new car.
+      </div>
+      <div class="form-group">
+        <input type="text" name="carId" class="form-control" placeholder="Enter Car Id.." *ngIf="newCar.carId!=''" [(ngModel)]="carId" disabled=true>
+        <span class="help-block" *ngIf="newCar.carId!=''" >Car ID can not be changed</span>
+        </div>
+  </div>
+  </form>
+
+    <div class="form-group">
+    <label for="carBrand">Car Brand</label>
+    <input type="text" name="carBrand" class="form-control" placeholder="Enter Car Brand.." [(ngModel)]="carBrand">
+    </div>
+
+
+    <div class="form-group">
+    <label for="carOwner">Car Owner</label>
+    <input type="text" name="carOwner" class="form-control" placeholder="Enter Car Owner.." [(ngModel)]="carOwner">
+    </div>
+
+
+    <div class="form-group">
+    <label for="carPassengerVolume">Car Passenger Volume </label>
+    <select id="carPassengerVolume" name="carPassengerVolume" class="form-control" [(ngModel)]="carPassengerVolume">
+      <option value="0">Please select</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+    </select>
+    </div>
+
+
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-primary" *ngIf="newCar.carId==''" (click)=" addNewCar()" [disabled]="!carId">Add</button>
+          <button type="button" class="btn btn-primary" *ngIf="newCar.carId!=''" (click)=" updateCar()">Update</button>
+
+        </div>
+

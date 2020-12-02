@@ -1,12 +1,14 @@
-<p>driver-info works!</p>
-
-
 <div class="animated fadeIn">
   <div class="row">
     <div class="col-lg-12">
       <div class="card">
         <div class="card-header">
           <i class="fa fa-align-justify"></i> Test Table
+          <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal"
+          (click) = "addClick()" data-target="#exampleModal" data-backdorp="static" data-keyboard="false">
+          <i class="fa fa-plus-circle fa-md"></i>
+            Add New Driver
+          </button>
         </div>
         <div class="card-body">
           <table class="table table-bordered table-striped ">
@@ -14,12 +16,11 @@
             <!-- 宣告欄位名稱 -->
             <thead>
               <tr>
-                <th>driverId</th>
-                <th>driverName</th>
-                <th>driverPhone</th>
-                <th>driverPhoto</th>
-                <th>createAt</th>
-                <th>updateAt</th>
+                <th>DriverId</th>
+                <th>DriverName</th>
+                <th>DriverPhone</th>
+                <!-- <th>DriverPhoto</th> -->
+                <th>Action</th>
              </tr>
             </thead>
            <!-- 宣告欄位名稱 -->
@@ -30,14 +31,47 @@
                 <td>{{data.driverId}}</td>
                 <td>{{data.driverName}}</td>
                 <td>{{data.driverPhone}}</td>
-                <td>{{data.driverPhoto}}</td>
-                <td>{{data.createAt}}</td>
-                <td>{{data.updateAt}}</td>
+                <!-- <td>{{data.driverPhoto}}</td> -->
+                <td>
+                  <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+                  <button type="button" class="btn btn-primary"  data-toggle="modal"
+                  data-target="#exampleModal" (click)="editClick(data)">
+                    <i class="cui-note icons font-1xl mt-4"></i>
+                    Edit
+                  </button>
+                  <button type="button" class="btn btn-danger"  (click)= "deleteClick(data)">
+                    <i class="cui-trash icons font-1xl mt-4"></i>
+                    Delete
+                  </button>
+                  </div>
+                </td>
               </tr>
             </tbody>
 
             <!-- 宣告資料表表身 -->
           </table>
+            <!-- /.modal -->
+            <div class="modal fade" tabindex="-1" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">{{ModalTitle}}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click) = "closeClick()">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+
+                <!-- /.modal body -->
+              <div class="modal-body">
+                <app-add-edit-driver-info [newDriver] = "newDriver" *ngIf = "AddEditDriverInfo"></app-add-edit-driver-info>
+                </div>
+                <!-- /.modal body -->
+              </div>
+              <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+
+
 
           <!-- 頁面切換 -->
           <!-- <nav>

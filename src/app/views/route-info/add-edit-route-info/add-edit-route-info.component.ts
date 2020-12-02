@@ -5,12 +5,15 @@ import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
 
 
+
+
 @Component({
   selector: 'app-add-edit-route-info',
   templateUrl: './add-edit-route-info.component.html',
   styleUrls: ['./add-edit-route-info.component.css']
 })
 export class AddEditRouteInfoComponent implements OnInit {
+
 
   constructor(private service:RouteInfoService) { }
 
@@ -37,34 +40,34 @@ export class AddEditRouteInfoComponent implements OnInit {
 
 
   addNewRoute(){
-    var val = { routeId: this.routeId,
+    var val = {
+    routeId: this.routeId,
     routeName: this.routeName,
     routeStart: this.routeStart,
-    routeEnd : this.routeEnd,
+    routeEnd :  this.routeEnd,
     routeCostTime: this.routeCostTime,
     routeType: this.routeType,
-    routeRemark : this.routeRemark}
-
-    this.service.addData(val).subscribe(res =>{
-      console.log(HttpErrorResponse);
-
-      if (res.toString() =='true'){
+    routeRemark :this.routeRemark
+    }
+    this.service.addData(val).subscribe(res => {
+      console.log(res.status)
         Swal.fire({
           icon: 'success',
           title: 'Your work has been saved',
           showConfirmButton: false,
           timer: 1500
         })
-      } else if (HttpErrorResponse){
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!',
-          timer: 1500
-        })
-      }
-    });
-
+    },
+    err => {
+      console.log('error',err.status)
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        timer: 1500
+      })
+    }
+  );
   }
 
 
@@ -77,23 +80,23 @@ export class AddEditRouteInfoComponent implements OnInit {
       routeType: this.routeType,
       routeRemark : this.routeRemark}
 
-      this.service.updateData(val).subscribe(res =>{
-        console.log(res.toString());
-        if (res.toString()=='true'){
+      this.service.updateData(val).subscribe(res => {
+        console.log(res.status)
           Swal.fire({
             icon: 'success',
             title: 'Your work has been saved',
             showConfirmButton: false,
             timer: 1500
           })
-        } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong!',
-            timer: 1500
-          })
-        }
+      },
+      err => {
+        console.log('error',err.status)
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+          timer: 1500
+        })
       });
 
   }

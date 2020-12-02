@@ -3,7 +3,7 @@ import { PaginatedResult } from './../_models/pagination';
 import { HttpClient, HttpClientModule, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -20,15 +20,16 @@ export class RouteInfoService {
   }
 
   addData(val: any){
-    return this.http.post(this.apiUrl + '/RouteInfoes', val);
+    return this.http.post(this.apiUrl + '/RouteInfoes', val, {observe: 'response'});
   }
 
   updateData(val: any){
-    return this.http.put(this.apiUrl + '/RouteInfoes', val);
+    return this.http.put(this.apiUrl + '/RouteInfoes', val,{observe: 'response'});
   }
 
   deleteData(val: any){
     return this.http.delete(this.apiUrl + '/RouteInfoes/' + val);
   }
+
 
 }

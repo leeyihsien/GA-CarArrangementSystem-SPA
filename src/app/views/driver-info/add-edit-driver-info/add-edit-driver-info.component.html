@@ -1,0 +1,46 @@
+  <div class="form-group row">
+      <div class="col-md-6">
+
+      <form class = "was-validated">
+      <label for="driverId" >Driver ID</label>
+      <input type="text" id="driverId" name="driverId" class="form-control" placeholder="Enter Driver Id.." *ngIf="newDriver.driverId==''" [(ngModel)]="driverId" required>
+
+      <div class="valid-feedback" >
+        Input is valid.
+      </div>
+
+      <div class="invalid-feedback">
+        Please create an new ID for the new driver.
+      </div>
+      </form>
+      <input type="text" name="driverId" class="form-control" placeholder="Enter Driver Id.." *ngIf="newDriver.driverId!=''" [(ngModel)]="driverId" disabled=true>
+      <span class="help-block" *ngIf="newDriver.driverId!=''" >Driver ID can not be changed</span>
+
+      <pre></pre>
+        <label for="routeName">Driver Name</label>
+        <input type="text" name="driverName" class="form-control" placeholder="Enter Driver Name.." [(ngModel)]="driverName">
+      <pre></pre>
+        <label for="routeStart">Driver Phone</label>
+        <input type="text" name="driverPhone" class="form-control" placeholder="Enter Driver Phone.." [(ngModel)]="driverPhone">
+
+      </div>
+
+      <div class="ml-3 bd-highlight" style="width: 40%;">
+        <img [src]=driverPhotoFilePath height="220px;" width="200px;">
+        <pre></pre>
+        <input id="file" type="file" (change)="uploadImage($event)" style="display: none"/>
+        <button type="button" class="btn btn-primary" onclick="file.click()" style="width: 60%;">
+          Upload Image
+        </button>
+      </div>
+
+
+  </div>
+
+
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" *ngIf="newDriver.driverId==''" (click)=" addNewDriver()" [disabled]="!driverId">Add</button>
+          <button type="button" class="btn btn-primary" *ngIf="newDriver.driverId!=''" (click)=" updateDriver()">Update</button>
+        </div>
+

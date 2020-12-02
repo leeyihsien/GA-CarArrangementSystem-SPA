@@ -68,6 +68,8 @@ import { RouteInfoComponent } from './views/route-info/route-info.component';
 import { CarDriverComponent } from './views/car-driver/car-driver.component';
 import { AddEditRouteInfoComponent } from './views/route-info/add-edit-route-info/add-edit-route-info.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddEditDriverInfoComponent } from './views/driver-info/add-edit-driver-info/add-edit-driver-info.component';
+import { AddEditCarInfoComponent } from './views/car-info/add-edit-car-info/add-edit-car-info.component';
 // import { ArrangementInfoRoutingModule } from './views/arrangement-info/arrangement-info-routing.module';
 // import { ArrangementInfoModule } from './views/arrangement-info/arrangement-info.module';
 
@@ -105,6 +107,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     RouteInfoComponent,
     CarDriverComponent,
     AddEditRouteInfoComponent,
+    AddEditDriverInfoComponent,
+    AddEditCarInfoComponent,
   ],
 
   providers: [
