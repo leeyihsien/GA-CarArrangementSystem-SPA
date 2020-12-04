@@ -37,21 +37,6 @@ export const routes: Routes = [
   },
   {
     //設定路由
-    path: 'carInfo',
-    component : CarInfoComponent
-  },
-  {
-    //設定路由
-    path: 'driverInfo',
-    component : DriverInfoComponent
-  },
-  {
-    //設定路由
-    path: 'routeInfo',
-    component : RouteInfoComponent
-  },
-  {
-    //設定路由
     path: 'carDriver',
     component : CarDriverComponent
   },
@@ -123,10 +108,18 @@ export const routes: Routes = [
         path: 'widgets',
         loadChildren: () => import('./views/widgets/widgets.module').then(m => m.WidgetsModule)
       },
-      // {
-      //   path: 'arrangement-info',
-      //   loadChildren: () => import('./views/arrangement-info/arrangement-info.module').then(m => m.ArrangementInfoModule)
-      // }
+      {
+        path: 'routeInfo',
+        loadChildren: () => import('./views/route-info/route-info.module').then(m => m.RouteInfoModule)
+      },
+      {
+        path: 'carInfo',
+        loadChildren: () => import('./views/car-info/car-info.module').then(m => m.CarInfoModule)
+      },
+      {
+        path: 'driverInfo',
+        loadChildren: () => import('./views/driver-info/driver-info.module').then(m => m.DriverInfoModule)
+      },
     ]
   },
   { path: '**', component: P404Component }

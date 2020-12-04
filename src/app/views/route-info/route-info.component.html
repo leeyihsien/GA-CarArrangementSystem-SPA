@@ -1,29 +1,30 @@
 <div class="animated fadeIn">
   <div class="row">
     <div class="col-lg-12">
-      <div class="card">
-        <div class="card-header">
-          <i class="fa fa-align-justify"></i>Test Table
+      <div class="card ">
+          <h2 class="card-header">Route Info Table
           <button type="button" class="btn btn-primary float-right m-2" data-toggle="modal"
           (click) = "addClick()" data-target="#exampleModal" data-backdorp="static" data-keyboard="false">
           <i class="fa fa-plus-circle fa-md"></i>
             Add New Route
           </button>
-        </div>
-        <div class="card-body">
-          <table class="table table-bordered table-striped ">
+          <pre></pre>
+          <h6> &nbsp;&nbsp;&nbsp;&nbsp; Only for general staff to maintain the data of route info</h6>
+        </h2>
 
+        <div class="card-body">
+              <table id="routeInfoTable" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover stripe nowrap">
             <!-- 宣告欄位名稱 -->
             <thead>
               <tr>
-                <th>RouteId</th>
-                <th>RouteName</th>
-                <th>RouteStart</th>
-                <th>RouteEnd</th>
-                <th>RouteCostTime</th>
-                <th>RouteType</th>
-                <th>RouteRemark</th>
-                <th>Action</th>
+                <th >RouteId</th>
+                <th >RouteName</th>
+                <th >RouteStart</th>
+                <th >RouteEnd</th>
+                <th style="width: 40px;">RouteCostTime</th>
+                <th >RouteType</th>
+                <th >RouteRemark</th>
+                <th >Action</th>
              </tr>
             </thead>
            <!-- 宣告欄位名稱 -->
@@ -62,7 +63,7 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <h4 class="modal-title">{{ModalTitle}}</h4>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click) = "closeClick()">
+                  <button #closeModal type="button" class="close" data-dismiss="modal"  aria-label="Close" (click) = "closeClick()">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
@@ -107,6 +108,7 @@
 
 
         </div>
+      </div>
       </div>
     </div>
     <!--/.col-->

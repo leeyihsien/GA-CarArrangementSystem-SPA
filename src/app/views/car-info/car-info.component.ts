@@ -2,9 +2,12 @@ import { AddEditCarInfoComponent } from './add-edit-car-info/add-edit-car-info.c
 import { CarInfoService } from './../../_core/_services/car-info.service';
 import { Pagination, PaginatedResult } from './../../_core/_models/pagination';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, OnDestroy, AfterViewInit  } from '@angular/core';
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
+import { Subject } from 'rxjs';
+import { DataTableDirective } from 'angular-datatables';
+
 
 
 @Component({
@@ -12,20 +15,49 @@ import 'sweetalert2/src/sweetalert2.scss';
   templateUrl: './car-info.component.html',
   styleUrls: ['./car-info.component.css']
 })
-export class CarInfoComponent implements OnInit {
+export class CarInfoComponent implements AfterViewInit,OnDestroy, OnInit {
+
+  @ViewChild('closeModal') closeModal: ElementRef;
 
   AddEditCarInfo: boolean = false;
   ModalTitle: string;
 
   constructor(private service : CarInfoService) { }
 
-  carInfoData : any = [];
+  @ViewChild(DataTableDirective, {static: false})
 
+  dtElement: DataTableDirective;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
+
+  carInfoData : any = [];
   newCar: any;
 
+  ngAfterViewInit(): void {
+    this.dtTrigger.next();
+  }
 
   ngOnInit(): void {
     this.refreshData();
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 8
+    };
+  }
+
+
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
+  }
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      // Destroy the table first
+      dtInstance.destroy();
+      // Call the dtTrigger to rerender again
+      this.dtTrigger.next();
+    });
   }
 
 
@@ -33,6 +65,7 @@ export class CarInfoComponent implements OnInit {
     this.service.getData().subscribe(data => {
       this.carInfoData = data;
       console.log(this.carInfoData);
+      this.rerender();
     });
   }
 
@@ -55,8 +88,8 @@ export class CarInfoComponent implements OnInit {
   }
 
   closeClick(){
-    this.refreshData();
     this.AddEditCarInfo = false;
+    this.closeModal.nativeElement.click();
   }
 
   deleteClick(item){

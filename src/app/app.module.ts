@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { DataTablesModule } from 'angular-datatables';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
@@ -62,16 +62,11 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { ArrangementInfoComponent } from './views/arrangement-info/arrangement-info.component';
-import { CarInfoComponent } from './views/car-info/car-info.component';
-import { DriverInfoComponent } from './views/driver-info/driver-info.component';
-import { RouteInfoComponent } from './views/route-info/route-info.component';
 import { CarDriverComponent } from './views/car-driver/car-driver.component';
-import { AddEditRouteInfoComponent } from './views/route-info/add-edit-route-info/add-edit-route-info.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AddEditDriverInfoComponent } from './views/driver-info/add-edit-driver-info/add-edit-driver-info.component';
-import { AddEditCarInfoComponent } from './views/car-info/add-edit-car-info/add-edit-car-info.component';
-// import { ArrangementInfoRoutingModule } from './views/arrangement-info/arrangement-info-routing.module';
-// import { ArrangementInfoModule } from './views/arrangement-info/arrangement-info.module';
+import { RouteInfoModule } from './views/route-info/route-info.module';
+import { CarInfoModule } from './views/car-info/car-info.module';
+import { DriverInfoModule } from './views/driver-info/driver-info.module';
 
 @NgModule({
   imports: [
@@ -93,6 +88,10 @@ import { AddEditCarInfoComponent } from './views/car-info/add-edit-car-info/add-
     PaginationModule.forRoot(),
     ModalModule.forRoot(),
     NgbModule,
+    RouteInfoModule,
+    CarInfoModule,
+    DriverInfoModule,
+    DataTablesModule
   ],
   declarations: [
     AppComponent,
@@ -102,13 +101,7 @@ import { AddEditCarInfoComponent } from './views/car-info/add-edit-car-info/add-
     LoginComponent,
     RegisterComponent,
     ArrangementInfoComponent,
-    CarInfoComponent,
-    DriverInfoComponent,
-    RouteInfoComponent,
     CarDriverComponent,
-    AddEditRouteInfoComponent,
-    AddEditDriverInfoComponent,
-    AddEditCarInfoComponent,
   ],
 
   providers: [

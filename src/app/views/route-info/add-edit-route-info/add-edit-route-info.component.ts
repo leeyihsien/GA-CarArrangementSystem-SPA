@@ -1,9 +1,9 @@
+import { RouteInfoComponent } from './../route-info.component';
 import { RouteInfoService } from './../../../_core/_services/route-info.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
-
 
 
 
@@ -15,7 +15,7 @@ import 'sweetalert2/src/sweetalert2.scss';
 export class AddEditRouteInfoComponent implements OnInit {
 
 
-  constructor(private service:RouteInfoService) { }
+  constructor(private service:RouteInfoService, private component: RouteInfoComponent) { }
 
 
   @Input() newRoute: any ;
@@ -26,6 +26,9 @@ export class AddEditRouteInfoComponent implements OnInit {
   routeCostTime: number;
   routeType: string;
   routeRemark: string;
+
+
+  ariaHidden: boolean = false;
 
 
   ngOnInit(): void {
@@ -57,6 +60,8 @@ export class AddEditRouteInfoComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
+        this.component.closeClick();
+        this.component.refreshData();
     },
     err => {
       console.log('error',err.status)
@@ -88,6 +93,8 @@ export class AddEditRouteInfoComponent implements OnInit {
             showConfirmButton: false,
             timer: 1500
           })
+          this.component.closeClick();
+          this.component.refreshData();
       },
       err => {
         console.log('error',err.status)

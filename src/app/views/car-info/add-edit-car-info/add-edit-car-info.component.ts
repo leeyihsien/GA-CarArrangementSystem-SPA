@@ -1,3 +1,4 @@
+import { CarInfoComponent } from './../car-info.component';
 import { CarInfoService } from './../../../_core/_services/car-info.service';
 import { Component, OnInit, Input } from '@angular/core';
 import Swal from 'sweetalert2';
@@ -11,7 +12,7 @@ import 'sweetalert2/src/sweetalert2.scss';
 })
 export class AddEditCarInfoComponent implements OnInit {
 
-  constructor(private service: CarInfoService) { }
+  constructor(private service: CarInfoService, private component: CarInfoComponent ) { }
 
   @Input() newCar: any;
   carId: string;
@@ -43,6 +44,8 @@ export class AddEditCarInfoComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
+        this.component.closeClick();
+        this.component.refreshData();
     },
     err => {
       console.log('error',err.status)
@@ -75,6 +78,8 @@ export class AddEditCarInfoComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
+        this.component.closeClick();
+        this.component.refreshData();
     },
     err => {
       console.log('error',err.status)

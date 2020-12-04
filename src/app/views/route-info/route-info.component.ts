@@ -1,18 +1,21 @@
 import { RouteInfoService } from './../../_core/_services/route-info.service';
 import { Pagination, PaginatedResult } from './../../_core/_models/pagination';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
+import { DataTableDirective } from 'angular-datatables';
+import { DataTablesModule } from 'angular-datatables';
 import { ModalDirective, ModalModule } from 'ngx-bootstrap/modal';
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
-
-
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-route-info',
   templateUrl: './route-info.component.html',
 })
-export class RouteInfoComponent implements OnInit {
+export class RouteInfoComponent implements AfterViewInit,OnDestroy, OnInit {
+
+  @ViewChild('closeModal') closeModal: ElementRef;
 
   AddEditRouteInfo : boolean = false;
   ModalTitle: string;
@@ -20,14 +23,40 @@ export class RouteInfoComponent implements OnInit {
 
   constructor(private service: RouteInfoService) { }
 
+  @ViewChild(DataTableDirective, {static: false})
+
+  dtElement: DataTableDirective;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
+
   routeInfoData : any = [];
-
-
   newRoute:any;
 
 
+  ngAfterViewInit(): void {
+    this.dtTrigger.next();
+  }
+
   ngOnInit(): void {
     this.refreshData();
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 8
+    };
+  }
+
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
+  }
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      // Destroy the table first
+      dtInstance.destroy();
+      // Call the dtTrigger to rerender again
+      this.dtTrigger.next();
+    });
   }
 
 
@@ -51,6 +80,7 @@ export class RouteInfoComponent implements OnInit {
     this.service.getData().subscribe ( data => {
       this.routeInfoData = data ;
       console.log(this.routeInfoData);
+      this.rerender();
     })
   }
 
@@ -60,11 +90,12 @@ export class RouteInfoComponent implements OnInit {
     this.newRoute=item;
     this.ModalTitle = 'Edit Route Info';
     this.AddEditRouteInfo = true;
+
   }
 
   closeClick(){
-    this.refreshData();
     this.AddEditRouteInfo = false;
+    this.closeModal.nativeElement.click();
 
   }
 

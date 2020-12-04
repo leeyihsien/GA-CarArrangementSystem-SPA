@@ -1,7 +1,9 @@
+import { DriverInfoComponent } from './../driver-info.component';
 import { DriverInfoService } from './../../../_core/_services/driver-info.service';
 import { Component, OnInit, Input } from '@angular/core';
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
+
 
 
 @Component({
@@ -11,7 +13,7 @@ import 'sweetalert2/src/sweetalert2.scss';
 })
 export class AddEditDriverInfoComponent implements OnInit {
 
-  constructor(private service: DriverInfoService) { }
+  constructor(private service: DriverInfoService, private component: DriverInfoComponent ) { }
 
   @Input() newDriver: any ;
   driverId: string;
@@ -44,6 +46,8 @@ export class AddEditDriverInfoComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
+        this.component.closeClick();
+        this.component.refreshData();
     },
     err => {
       console.log('error',err.status)
@@ -72,6 +76,8 @@ export class AddEditDriverInfoComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
+        this.component.closeClick();
+        this.component.refreshData();
     },
     err => {
       console.log('error',err.status)

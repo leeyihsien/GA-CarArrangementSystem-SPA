@@ -1,9 +1,11 @@
 import { DriverInfoService } from './../../_core/_services/driver-info.service';
 import { Pagination, PaginatedResult } from './../../_core/_models/pagination';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
+import { DataTableDirective } from 'angular-datatables';
+import { Subject } from 'rxjs';
 
 
 
@@ -11,19 +13,50 @@ import 'sweetalert2/src/sweetalert2.scss';
   selector: 'app-driver-info',
   templateUrl: './driver-info.component.html',
 })
-export class DriverInfoComponent implements OnInit {
+export class DriverInfoComponent implements  AfterViewInit,OnDestroy,OnInit {
+
+  @ViewChild('closeModal') closeModal: ElementRef;
+
 
   AddEditDriverInfo : boolean = false;
   ModalTitle: string;
 
   constructor(private service : DriverInfoService) { }
 
-  driverInfoData : any = [];
+  @ViewChild(DataTableDirective, {static: false})
 
+  dtElement: DataTableDirective;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
+
+  driverInfoData : any = [];
   newDriver: any;
+
+  ngAfterViewInit(): void {
+    this.dtTrigger.next();
+  }
 
   ngOnInit(): void {
     this.refreshData();
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 8
+   };
+  }
+
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
+  }
+
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      // Destroy the table first
+      dtInstance.destroy();
+      // Call the dtTrigger to rerender again
+      this.dtTrigger.next();
+    });
   }
 
   addClick(){
@@ -42,6 +75,7 @@ export class DriverInfoComponent implements OnInit {
     this.service.getData().subscribe ( data => {
       this.driverInfoData = data;
       console.log(this.driverInfoData);
+      this.rerender();
     });
   }
 
@@ -53,8 +87,9 @@ export class DriverInfoComponent implements OnInit {
   }
 
   closeClick(){
-    this.refreshData();
     this.AddEditDriverInfo = false;
+    this.closeModal.nativeElement.click();
+
   }
 
 
