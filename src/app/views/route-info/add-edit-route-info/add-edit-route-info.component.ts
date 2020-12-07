@@ -21,21 +21,20 @@ export class AddEditRouteInfoComponent implements OnInit {
   @Input() newRoute: any ;
   routeId: string;
   routeName:string;
-  routeStart: string;
-  routeEnd: string;
+  routeStartingStation: string;
+  routeTerminalStation: string;
   routeCostTime: number;
   routeType: string;
   routeRemark: string;
 
 
-  ariaHidden: boolean = false;
 
 
   ngOnInit(): void {
     this.routeId = this.newRoute.routeId;
     this.routeName = this.newRoute.routeName;
-    this.routeStart = this.newRoute.routeStart;
-    this.routeEnd = this.newRoute.routeEnd;
+    this.routeStartingStation = this.newRoute.routeStartingStation;
+    this.routeTerminalStation = this.newRoute.routeTerminalStation;
     this.routeCostTime = this.newRoute.routeCostTime;
     this.routeType = this.newRoute.routeType;
     this.routeRemark = this.newRoute.routeRemark;
@@ -46,8 +45,8 @@ export class AddEditRouteInfoComponent implements OnInit {
     var val = {
     routeId: this.routeId,
     routeName: this.routeName,
-    routeStart: this.routeStart,
-    routeEnd :  this.routeEnd,
+    routeStartingStation: this.routeStartingStation,
+    routeTerminalStation:  this.routeTerminalStation,
     routeCostTime: this.routeCostTime,
     routeType: this.routeType,
     routeRemark :this.routeRemark
@@ -79,8 +78,8 @@ export class AddEditRouteInfoComponent implements OnInit {
   updateRoute(){
     var val = { routeId: this.routeId,
       routeName: this.routeName,
-      routeStart: this.routeStart,
-      routeEnd : this.routeEnd,
+      routeStartingStation: this.routeStartingStation,
+      routeTerminalStation:  this.routeTerminalStation,
       routeCostTime: this.routeCostTime,
       routeType: this.routeType,
       routeRemark : this.routeRemark}

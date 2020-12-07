@@ -264,12 +264,12 @@ export const navItems: INavData[] = [
 
   {
     name: '2. Transaction',
-    url:  '/arrangementinfo/123',
+    url:  '/transaction',
     icon: 'fa fa-cogs',
     children: [
       {
         name: '2.1 Car Booking',
-        url: '/arrangementInfo',
+        url: '/transaction/carBooking',
         icon: 'fa fa-cogs'
       },
       {

@@ -22,13 +22,13 @@
 
 
   <div class="form-group">
-  <label for="routeStart">Route Start</label>
-  <input type="text" name="routeStart" class="form-control" placeholder="Enter Route Start.." [(ngModel)]="routeStart">
+  <label for="routeStart">Route Starting Station</label>
+  <input type="text" name="routeStartingStation" class="form-control" placeholder="Enter Route Start.." [(ngModel)]="routeStartingStation">
   </div>
 
   <div class="form-group">
-  <label for="routeEnd">Route End</label>
-  <input type="text" name="routeEnd" class="form-control" placeholder="Enter Route End.." [(ngModel)]="routeEnd">
+  <label for="routeEnd">Route Terminal Station</label>
+  <input type="text" name="routeTerminalStation" class="form-control" placeholder="Enter Route End.." [(ngModel)]="routeTerminalStation">
   </div>
 
   <div class="form-group">
@@ -49,8 +49,8 @@
     <label for="routeType">Route Type</label>
     <select id="routeType" name="routeType" class="form-control" [(ngModel)]="routeType">
       <option value="0">Please select</option>
-      <option value="one-way">One-Way</option>
-      <option value="round-trip">Round-Trip</option>
+      <option value="leave">Leave the factory</option>
+      <option value="back">Back to the factory</option>
     </select>
     </div>
 

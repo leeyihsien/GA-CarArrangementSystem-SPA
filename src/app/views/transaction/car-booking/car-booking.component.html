@@ -1,0 +1,112 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">
+          <strong>Leaving the factory</strong>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="arrangementId">Arrangement Id</label>
+                <input type="text" class="form-control" id="arrangementId" placeholder="The system will automatically insert the serial number" [(ngModel)]="arrangementId"  disabled=true>
+              </div>
+            </div>
+          </div><!--/.row-->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="userId">User Id</label>
+                <input type="text" class="form-control" id="userId" placeholder="Please enter your ID">
+              </div>
+            </div>
+          </div><!--/.row-->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="userName">User Name</label>
+                <input type="text" class="form-control" id="userName" placeholder="Please enter your name">
+              </div>
+            </div>
+          </div><!--/.row-->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="userPhone">User Phone</label>
+                <input type="text" class="form-control" id="userPhone" placeholder="Please enter your cellphone number">
+              </div>
+            </div>
+          </div><!--/.row-->
+
+          <div class="row">
+            <div class="form-group col-sm-4">
+              <label for="routeId">Route Id</label>
+              <select class="form-control" id="routeId" [(ngModel)]="routeId">
+                <option *ngFor="let route of routes" [ngValue]="routeId">{{route.routeId}}</option>
+              </select>
+            </div>
+
+            <!-- Datepicker -->
+            <div class="form-group col-sm-8">
+              <label for="departureTime">Departure Time</label>
+              <!-- <input class="form-control" id="departureTime" type="date" name="departureTime" placeholder="date"> -->
+              <div class="input-group">
+              <input id="date-input" type="text" class="form-control col-xs-8" aria-label="Date" required
+               dlDateTimeInput
+               [dlDateTimeInputFilter]="dateInputFilter"
+               [(ngModel)]="departureTime">
+                <button class="btn btn-primary dropdown-toggle date-dropdown" type="button" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      <span class="glyphicon glyphicon-calendar"></span> Choose Time</button>
+                <div class="dropdown-menu" (click)="keepDropDownOpen($event)">
+							  <div style="width:360px;">
+								<dl-date-time-picker *ngIf="showCalendar" [(startView)]="startView" [(ngModel)]="departureTime"
+									(change)="dateSelected($event)" [selectFilter]="datePickerFilter">
+                </dl-date-time-picker>
+              </div>
+							</div>
+						</div>
+            </div>
+            <!-- Datepicker -->
+          </div><!--/.row-->
+        </div>
+      </div>
+    </div><!--/.col-->
+
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">
+          <strong>Back to the factory</strong>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="company">Company</label>
+            <input type="text" class="form-control" id="company" placeholder="Enter your company name">
+          </div>
+          <div class="form-group">
+            <label for="vat">VAT</label>
+            <input type="text" class="form-control" id="vat" placeholder="PL1234567890">
+          </div>
+          <div class="form-group">
+            <label for="street">Street</label>
+            <input type="text" class="form-control" id="street" placeholder="Enter street name">
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-8">
+              <label for="city">City</label>
+              <input type="text" class="form-control" id="city" placeholder="Enter your city">
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="postal-code">Postal Code</label>
+              <input type="text" class="form-control" id="postal-code" placeholder="Postal Code">
+            </div>
+          </div><!--/.row-->
+          <div class="form-group">
+            <label for="country">Country</label>
+            <input type="text" class="form-control" id="country" placeholder="Country name">
+          </div>
+        </div>
+      </div>
+    </div><!--/.col-->
+  </div><!--/.row-->

@@ -14,7 +14,6 @@ import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 
 //import component
-import { ArrangementInfoComponent } from './views/arrangement-info/arrangement-info.component';
 import { RouteInfoService } from './_core/_services/route-info.service';
 import { DriverInfoService } from './_core/_services/driver-info.service';
 import { CarDriverService } from './_core/_services/car-driver.service';
@@ -29,11 +28,6 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
-  },
-  {
-    //設定路由
-    path: 'arrangementInfo',
-    component : ArrangementInfoComponent
   },
   {
     //設定路由
@@ -119,6 +113,10 @@ export const routes: Routes = [
       {
         path: 'driverInfo',
         loadChildren: () => import('./views/driver-info/driver-info.module').then(m => m.DriverInfoModule)
+      },
+      {
+        path: 'transaction',
+        loadChildren: () => import('./views/transaction/transaction.module').then(m => m.TransactionModule)
       },
     ]
   },

@@ -9,7 +9,8 @@ import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import{ SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-
+import { DatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 
 
@@ -34,7 +35,7 @@ import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 
 // import 需要用到的service
-import { CarArrangementInfoService } from './_core/_services/car-arrangement-info.service';
+import { ArrangementInfoService } from './_core/_services/arrangement-info.service';
 import { DriverInfoService } from './_core/_services/driver-info.service';
 import { RouteInfoService } from './_core/_services/route-info.service';
 import { CarDriverService } from './_core/_services/car-driver.service';
@@ -61,12 +62,13 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
-import { ArrangementInfoComponent } from './views/arrangement-info/arrangement-info.component';
 import { CarDriverComponent } from './views/car-driver/car-driver.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouteInfoModule } from './views/route-info/route-info.module';
 import { CarInfoModule } from './views/car-info/car-info.module';
 import { DriverInfoModule } from './views/driver-info/driver-info.module';
+import { TransactionModule } from './views/transaction/transaction.module';
+
 
 @NgModule({
   imports: [
@@ -91,7 +93,8 @@ import { DriverInfoModule } from './views/driver-info/driver-info.module';
     RouteInfoModule,
     CarInfoModule,
     DriverInfoModule,
-    DataTablesModule
+    DataTablesModule,
+    TransactionModule,
   ],
   declarations: [
     AppComponent,
@@ -100,13 +103,12 @@ import { DriverInfoModule } from './views/driver-info/driver-info.module';
     P500Component,
     LoginComponent,
     RegisterComponent,
-    ArrangementInfoComponent,
     CarDriverComponent,
   ],
 
   providers: [
     // 宣告要用的service
-    CarArrangementInfoService,
+    ArrangementInfoService,
     CarDriverService,
     CarInfoService,
     DriverInfoService,

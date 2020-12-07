@@ -19,8 +19,8 @@
               <tr>
                 <th >RouteId</th>
                 <th >RouteName</th>
-                <th >RouteStart</th>
-                <th >RouteEnd</th>
+                <th >RouteStartingStation</th>
+                <th >RouteTerminalStation</th>
                 <th style="width: 40px;">RouteCostTime</th>
                 <th >RouteType</th>
                 <th >RouteRemark</th>
@@ -34,8 +34,8 @@
               <tr *ngFor="let data of routeInfoData">
                 <td>{{data.routeId}}</td>
                 <td>{{data.routeName}}</td>
-                <td>{{data.routeStart}}</td>
-                <td>{{data.routeEnd}}</td>
+                <td>{{data.routeStartingStation}}</td>
+                <td>{{data.routeTerminalStation}}</td>
                 <td>{{data.routeCostTime}}</td>
                 <td>{{data.routeType}}</td>
                 <td>{{data.routeRemark}}</td>

@@ -65,8 +65,8 @@ export class RouteInfoComponent implements AfterViewInit,OnDestroy, OnInit {
     this.newRoute = {
       routeId:"",
       routeName:"",
-      routeStart: "",
-      routeEnd: "",
+      routeStartingStation: "",
+      routeTerminalStation: "",
       routeCostTime: 0,
       routeType:"",
       routeRemark: ""
