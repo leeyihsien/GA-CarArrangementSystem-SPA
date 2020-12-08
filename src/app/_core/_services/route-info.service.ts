@@ -31,5 +31,9 @@ export class RouteInfoService {
     return this.http.delete(this.apiUrl + '/RouteInfoes/' + val);
   }
 
+  getType(val: any) : Observable<any[]> {
+    return this.http.get<any>(this.apiUrl + '/RouteInfoes/type/'+ val);
+  }
+
 
 }

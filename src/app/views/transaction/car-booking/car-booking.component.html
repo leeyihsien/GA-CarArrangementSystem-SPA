@@ -5,72 +5,89 @@
         <div class="card-header">
           <strong>Leaving the factory</strong>
         </div>
-        <div class="card-body">
+        <div class="card-body" >
           <div class="row">
             <div class="col-sm-12">
               <div class="form-group">
-                <label for="arrangementId">Arrangement Id</label>
-                <input type="text" class="form-control" id="arrangementId" placeholder="The system will automatically insert the serial number" [(ngModel)]="arrangementId"  disabled=true>
+                <label for="leavearrangementId">Arrangement Id</label>
+                <input type="text" class="form-control" id="leavearrangementId" placeholder="The system will automatically insert the serial number" [(ngModel)]="arrangementId"  disabled=true>
               </div>
             </div>
           </div><!--/.row-->
           <div class="row">
             <div class="col-sm-12">
               <div class="form-group">
-                <label for="userId">User Id</label>
-                <input type="text" class="form-control" id="userId" placeholder="Please enter your ID">
+                <label for="leaveuserId">User Id</label>
+                <input type="text" class="form-control" id="leaveuserId" placeholder="Please enter your ID"  [(ngModel)]="userId">
               </div>
             </div>
           </div><!--/.row-->
           <div class="row">
             <div class="col-sm-12">
               <div class="form-group">
-                <label for="userName">User Name</label>
-                <input type="text" class="form-control" id="userName" placeholder="Please enter your name">
+                <label for="leaveuserName">User Name</label>
+                <input type="text" class="form-control" id="leaveuserName" placeholder="Please enter your name"  [(ngModel)]="userName">
               </div>
             </div>
           </div><!--/.row-->
           <div class="row">
             <div class="col-sm-12">
               <div class="form-group">
-                <label for="userPhone">User Phone</label>
-                <input type="text" class="form-control" id="userPhone" placeholder="Please enter your cellphone number">
+                <label for="leaveuserPhone">User Phone</label>
+                <input type="text" class="form-control" id="leaveuserPhone" placeholder="Please enter your cellphone number"  [(ngModel)]="userPhone">
               </div>
             </div>
           </div><!--/.row-->
 
           <div class="row">
             <div class="form-group col-sm-4">
-              <label for="routeId">Route Id</label>
-              <select class="form-control" id="routeId" [(ngModel)]="routeId">
-                <option *ngFor="let route of routes" [ngValue]="routeId">{{route.routeId}}</option>
+              <label for="leaverouteId">Route Id</label>
+              <select class="form-control" id="leaverouteId" [(ngModel)]="routeId">
+                <option *ngFor="let route of Leaveroutes" [ngValue]="routeId">{{route.routeId}}</option>
               </select>
             </div>
 
             <!-- Datepicker -->
             <div class="form-group col-sm-8">
-              <label for="departureTime">Departure Time</label>
+              <label for="leavedepartureTime">Departure Time</label>
               <!-- <input class="form-control" id="departureTime" type="date" name="departureTime" placeholder="date"> -->
               <div class="input-group">
               <input id="date-input" type="text" class="form-control col-xs-8" aria-label="Date" required
                dlDateTimeInput
                [dlDateTimeInputFilter]="dateInputFilter"
                [(ngModel)]="departureTime">
+               <span class="input-group-append">
                 <button class="btn btn-primary dropdown-toggle date-dropdown" type="button" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false">
                       <span class="glyphicon glyphicon-calendar"></span> Choose Time</button>
                 <div class="dropdown-menu" (click)="keepDropDownOpen($event)">
-							  <div style="width:360px;">
-								<dl-date-time-picker *ngIf="showCalendar" [(startView)]="startView" [(ngModel)]="departureTime"
+							  <div style="width:300px;">
+								<dl-date-time-picker *ngIf="showCalendar" [(startView)]="startView" [(minuteStep)]="minuteStep" [(ngModel)]="departureTime"
 									(change)="dateSelected($event)" [selectFilter]="datePickerFilter">
                 </dl-date-time-picker>
               </div>
-							</div>
+              </div>
+            </span>
 						</div>
             </div>
             <!-- Datepicker -->
           </div><!--/.row-->
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="leavearrangementRemark"> Remark</label>
+                <input type="text" class="form-control" id="arrangementRemark" placeholder="Please enter remark"  [(ngModel)]="arrangementRemark">
+              </div>
+            </div>
+          </div><!--/.row-->
+
         </div>
+
+        <div class="card-footer">
+          <button type="submit" class="btn btn-sm btn-primary float-right" (click) = "addBooking()"><i class="fa fa-dot-circle-o"></i> Submit</button>
+        </div>
+
       </div>
     </div><!--/.col-->
 
@@ -79,33 +96,87 @@
         <div class="card-header">
           <strong>Back to the factory</strong>
         </div>
-        <div class="card-body">
-          <div class="form-group">
-            <label for="company">Company</label>
-            <input type="text" class="form-control" id="company" placeholder="Enter your company name">
-          </div>
-          <div class="form-group">
-            <label for="vat">VAT</label>
-            <input type="text" class="form-control" id="vat" placeholder="PL1234567890">
-          </div>
-          <div class="form-group">
-            <label for="street">Street</label>
-            <input type="text" class="form-control" id="street" placeholder="Enter street name">
-          </div>
+        <div class="card-body" >
           <div class="row">
-            <div class="form-group col-sm-8">
-              <label for="city">City</label>
-              <input type="text" class="form-control" id="city" placeholder="Enter your city">
-            </div>
-            <div class="form-group col-sm-4">
-              <label for="postal-code">Postal Code</label>
-              <input type="text" class="form-control" id="postal-code" placeholder="Postal Code">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="backarrangementId">Arrangement Id</label>
+                <input type="text" class="form-control" id="arrangementId" placeholder="The system will automatically insert the serial number" [(ngModel)]="arrangementId"  disabled=true>
+              </div>
             </div>
           </div><!--/.row-->
-          <div class="form-group">
-            <label for="country">Country</label>
-            <input type="text" class="form-control" id="country" placeholder="Country name">
-          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="backuserId">User Id</label>
+                <input type="text" class="form-control" id="backuserId" placeholder="Please enter your ID"  [(ngModel)]="userId">
+              </div>
+            </div>
+          </div><!--/.row-->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="backuserName">User Name</label>
+                <input type="text" class="form-control" id="backuserName" placeholder="Please enter your name"  [(ngModel)]="userName">
+              </div>
+            </div>
+          </div><!--/.row-->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="backuserPhone">User Phone</label>
+                <input type="text" class="form-control" id="backuserPhone" placeholder="Please enter your cellphone number"  [(ngModel)]="userPhone">
+              </div>
+            </div>
+          </div><!--/.row-->
+
+          <div class="row">
+            <div class="form-group col-sm-4">
+              <label for="backrouteId">Route Id</label>
+              <select class="form-control" id="backrouteId" [(ngModel)]="routeId">
+                <option *ngFor="let route of Backroutes" [ngValue]="routeId">{{route.routeId}}</option>
+              </select>
+            </div>
+
+            <!-- Datepicker -->
+            <div class="form-group col-sm-8">
+              <label for="backdepartureTime">Departure Time</label>
+              <!-- <input class="form-control" id="departureTime" type="date" name="departureTime" placeholder="date"> -->
+              <div class="input-group">
+              <input id="date-input" type="text" class="form-control col-xs-8" aria-label="Date" required
+               dlDateTimeInput
+               [dlDateTimeInputFilter]="dateInputFilter"
+               [(ngModel)]="departureTime">
+               <span class="input-group-append">
+                <button class="btn btn-primary dropdown-toggle date-dropdown" type="button" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      <span class="glyphicon glyphicon-calendar"></span> Choose Time</button>
+                <div class="dropdown-menu" (click)="keepDropDownOpen($event)">
+							  <div style="width:300px;">
+								<dl-date-time-picker *ngIf="showCalendar" [(startView)]="startView" [(minuteStep)]="minuteStep" [(ngModel)]="departureTime"
+									(change)="dateSelected($event)" [selectFilter]="datePickerFilter">
+                </dl-date-time-picker>
+              </div>
+              </div>
+            </span>
+						</div>
+            </div>
+            <!-- Datepicker -->
+          </div><!--/.row-->
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="backarrangementRemark"> Remark</label>
+                <input type="text" class="form-control" id="arrangementRemark" placeholder="Please enter remark"  [(ngModel)]="arrangementRemark">
+              </div>
+            </div>
+          </div><!--/.row-->
+
+        </div>
+
+        <div class="card-footer">
+          <button type="submit" class="btn btn-sm btn-primary float-right" (click) = "addBooking()"><i class="fa fa-dot-circle-o"></i> Submit</button>
         </div>
       </div>
     </div><!--/.col-->

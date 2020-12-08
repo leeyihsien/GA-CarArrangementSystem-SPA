@@ -1,7 +1,6 @@
-import { element } from 'protractor';
 import { RouteInfoService } from './../../../_core/_services/route-info.service';
 import { ArrangementInfoService } from './../../../_core/_services/arrangement-info.service';
-import { Component, OnInit, Input, ViewChild, ElementRef} from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
 import { DateButton } from 'angular-bootstrap-datetimepicker';
 import * as _moment from 'moment';
 import { unitOfTime } from 'moment';
@@ -24,23 +23,42 @@ if ('default' in _moment) {
   templateUrl: './car-booking.component.html',
   styleUrls: ['./car-booking.component.css']
 })
-export class CarBookingComponent implements OnInit {
+export class CarBookingComponent implements OnInit, AfterViewInit{
 
   disablePastDates = true;
   startView: string = 'day';
-  enteredDate: Date;
+  minuteStep: string = '15';
   private _isPickerOpen = false;
   showCalendar = true;
+  BackonOff : boolean = false;
+  LeaveonOff: boolean = true;
 
+  @Input() newBooking: any;
+  arrangementId: string;
+  userId: string;
+  userName: string;
+  userPhone: string;
+  routeId: string;
+  departureTime: Date;
+  carId: string;
+  driverId: string;
+  arrangementStatus: string;
+  arrangementRemark: string;
 
+  Backroutes = [];
+  Leaveroutes = [];
 
-
-  routes = [];
-
+  // tslint:disable-next-line: max-line-length
   constructor(private arrangementInfoService: ArrangementInfoService, private routeInfoService: RouteInfoService, private elementRef: ElementRef) {
-    this.routeInfoService.getData().subscribe(data =>
-      this.routes = data);
+    this.routeInfoService.getType('leave').subscribe(data =>
+      this.Leaveroutes = data);
+
+      this.routeInfoService.getType('back').subscribe(data =>
+        this.Backroutes = data);
   }
+
+
+
 
   ngAfterViewInit(): void {
     const dropdownToggle = $(
@@ -74,45 +92,35 @@ export class CarBookingComponent implements OnInit {
   }
 
 
-  dateSelected(event) {
-    console.log('_isDropdownVisible', this._isPickerOpen);
-    if (this._isPickerOpen && event.value) {
-      $('.date-dropdown').dropdown('toggle');
-    }
-  }
 
   refreshDatePicker() {
-    this.enteredDate = null;
+    this.departureTime = null;
     this.startView = 'day';
     this.showCalendar = false;
+    this.minuteStep = '15';
     setTimeout(() => this.showCalendar = true, 100);
   }
 
+  dateSelected(event) {
+    console.log("_isDropdownVisible", this._isPickerOpen);
+    if (this._isPickerOpen && event.value) {
+      $(".date-dropdown").dropdown("toggle");
+    }
+  }
 
-
-  @Input() newBooking: any;
-  arrangementId: string;
-  userId: string;
-  userName: string;
-  userPhone: string;
-  routeId: string;
-  departureTime: Date;
-  carId: string;
-  driverId: string;
-  arrangementStatus: string;
-  arrangementRemark: string;
 
   ngOnInit(): void {
-    this.arrangementId = this.newBooking.arrangementId;
-    this.userId = this.newBooking.userId;
-    this.userName = this.newBooking.userName;
-    this.userPhone = this.newBooking.userPhone;
-    this.routeId = this.newBooking.routeId;
-    this.departureTime = this.newBooking.departureTime;
-    this.carId = this.newBooking.carId;
-    this.driverId = this.newBooking.driverId;
-    this.arrangementStatus = this.newBooking.arrangementStatus;
-    this.arrangementRemark = this.newBooking.arrangementRemark;
+    //預設值
+    // this.arrangementId = this.newBooking.arrangementId;
+    // this.userId = this.newBooking.userId;
+    // this.userName = this.newBooking.userName;
+    // this.userPhone = this.newBooking.userPhone;
+    // this.routeId = this.newBooking.routeId;
+    // this.departureTime = this.newBooking.departureTime;
+    // this.carId = this.newBooking.carId;
+    // this.driverId = this.newBooking.driverId;
+     this.arrangementStatus = 'test';
+    // this.arrangementRemark = this.newBooking.arrangementRemark;
   }
 
 
