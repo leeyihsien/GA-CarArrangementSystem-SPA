@@ -1,0 +1,90 @@
+<div class="row">
+<div class="col-sm-6 col-lg-3" *ngFor="let data of carInfoData; let i = index;">
+
+  <div class="card text-white bg-success" *ngIf="full">
+
+    <!-- <div class="tp-box" (click)="toggleFlip()" [@flipState]="flip">
+      <div class="tp-box__side tp-box__front">Front
+      </div>
+      <div class="tp-box__side tp-box__back">Back
+      </div>
+    </div> -->
+
+    <div class="card-header">
+      <!-- <div class="h1 text-muted text-right mb-4" >
+        <i class="icon-note"></i>
+      </div> -->
+      <div class="h1 text-muted text-left mb-4" >
+      <i class="fa fa-car fa-lg mt-4"></i>
+      <small class="text-muted text-uppercase font-weight-bold h4 mb-0">{{data.carId}}</small>
+    </div>
+      <!-- <small class="text-muted text-uppercase font-weight-bold h4 mb-0">{{data.carId}}</small> -->
+      <div class="h6 mb-0">Remaining position :
+      <label class="h4 mb-0">{{ (data.carPassengerVolume-1)}}</label>
+    </div>
+    <button class="btn btn-secondary float-right" (click)="isCollapsed[i] = !isCollapsed[i]" > show more </button>
+    </div>
+
+    <div class="card-body"
+         (collapsed)="collapsed($event)"
+         (expanded)="expanded($event)"
+         [collapse]="isCollapsed[i]" >
+
+         <div class="col-sm-12">
+         <input type="text" class="form-control" id="name" >
+        </div>
+    </div>
+
+
+  </div>
+
+<!-- test -->
+  <div class="card text-white bg-danger" *ngIf="!full">
+
+    <!-- <div class="tp-box" (click)="toggleFlip()" [@flipState]="flip">
+      <div class="tp-box__side tp-box__front">Front
+      </div>
+      <div class="tp-box__side tp-box__back">Back
+      </div>
+    </div> -->
+
+    <div class="card-header">
+      <!-- <div class="h1 text-muted text-right mb-4" >
+        <i class="icon-note"></i>
+      </div> -->
+      <div class="h1 text-muted text-left mb-4" >
+      <i class="fa fa-car fa-lg mt-4"></i>
+      <small class="text-muted text-uppercase font-weight-bold h4 mb-0">{{data.carId}}</small>
+    </div>
+      <!-- <small class="text-muted text-uppercase font-weight-bold h4 mb-0">{{data.carId}}</small> -->
+      <div class="h6 mb-0">Remaining position :
+      <label class="h4 mb-0">{{ (data.carPassengerVolume-1)}}</label>
+    </div>
+    <button class="btn btn-secondary float-right" (click)="isCollapsed[i] = !isCollapsed[i]" > show more </button>
+    </div>
+
+    <div class="card-body"
+         (collapsed)="collapsed($event)"
+         (expanded)="expanded($event)"
+         [collapse]="isCollapsed[i]" >
+      <p>
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
+        consequat.
+      </p>
+    </div>
+  </div>
+<!-- test -->
+
+
+
+
+
+
+
+</div><!--/.col-->
+<!-- </div> -->
+
+
+
+
+

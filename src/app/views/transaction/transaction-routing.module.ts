@@ -1,3 +1,4 @@
+import { CarArrangementComponent } from './car-arrangement/car-arrangement.component';
 import { CarBookingComponent } from './car-booking/car-booking.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -15,6 +16,13 @@ const routes: Routes = [
         component:CarBookingComponent,
         data :{
           title: 'CarBooking'
+        },
+      },
+      {
+        path:'carArrangement',
+        component:CarArrangementComponent,
+        data :{
+          title: 'CarArrangement'
         },
       }
     ]

@@ -274,7 +274,7 @@ export const navItems: INavData[] = [
       },
       {
         name: '2.2 Car Arrangement',
-        url: '/carDriver',
+        url: '/transaction/carArrangement',
         icon: 'fa fa-cogs'
       },
     ]
