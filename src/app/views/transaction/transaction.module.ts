@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DlDateTimeDateModule, DlDateTimePickerModule,DlDateTimeInputModule } from 'angular-bootstrap-datetimepicker';
 import { CarArrangementComponent } from './car-arrangement/car-arrangement.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { DragulaModule } from 'ng2-dragula';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
     DlDateTimeDateModule,
     DlDateTimePickerModule,
     DlDateTimeInputModule,
-    CollapseModule
+    CollapseModule,
+    DragulaModule.forRoot(),
+    TabsModule
   ]
 })
 export class TransactionModule { }

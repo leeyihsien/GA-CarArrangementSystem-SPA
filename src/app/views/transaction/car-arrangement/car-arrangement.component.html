@@ -1,14 +1,34 @@
 <div class="row">
+
+  <div class="col-12 p2">
+    <!-- Nav tabs -->
+    <tabset>
+
+              <tab *ngFor="let Routedata of routeInfoData" dragula="USER"  [(dragulaModel)] = "arrangementData">
+
+
+
+              <ng-template tabHeading>
+                <i class="icon-list"></i> {{Routedata.routeId}} &nbsp;
+                <span class="badge badge-success">New</span>
+              </ng-template>
+
+              <ng-container>
+              <div *ngFor="let data of arrangementData" >
+                <div class="btn btn-pill btn-primary" *ngIf="(data.routeId == Routedata.routeId && data.arrangementStatus == null)" >{{ data.arrangementId }}</div>
+              </div>
+            </ng-container>
+
+
+            </tab>
+
+    </tabset>
+  </div><!--/.col-->
+
+
+
 <div class="col-sm-6 col-lg-3" *ngFor="let data of carInfoData; let i = index;">
-
-  <div class="card text-white bg-success" *ngIf="full">
-
-    <!-- <div class="tp-box" (click)="toggleFlip()" [@flipState]="flip">
-      <div class="tp-box__side tp-box__front">Front
-      </div>
-      <div class="tp-box__side tp-box__back">Back
-      </div>
-    </div> -->
+  <div class="card text-white bg-success " *ngIf="full" >
 
     <div class="card-header">
       <!-- <div class="h1 text-muted text-right mb-4" >
@@ -25,18 +45,18 @@
     <button class="btn btn-secondary float-right" (click)="isCollapsed[i] = !isCollapsed[i]" > show more </button>
     </div>
 
-    <div class="card-body"
+
+    <div class="card-body wrapper"
          (collapsed)="collapsed($event)"
          (expanded)="expanded($event)"
-         [collapse]="isCollapsed[i]" >
-
-         <div class="col-sm-12">
-         <input type="text" class="form-control" id="name" >
-        </div>
+         [collapse]="isCollapsed[i]"
+         dragula="USER"  [(dragulaModel)] = "arrangementData">
     </div>
 
-
   </div>
+
+
+
 
 <!-- test -->
   <div class="card text-white bg-danger" *ngIf="!full">
@@ -75,14 +95,14 @@
   </div>
 <!-- test -->
 
-
-
-
-
-
-
 </div><!--/.col-->
-<!-- </div> -->
+</div>
+
+<div dragula="DRAGULA_FACTS">
+  <div *ngFor="let data of carInfoData">
+    <button class="btn btn-primary" *ngIf="(data.carId == 'testCarId1')">{{ data.carId }}</button>
+    </div>
+</div>
 
 
 

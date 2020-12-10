@@ -1,46 +1,53 @@
-/*
-    .tp-wrapper {
-      -webkit-perspective: 800px;
-              perspective: 800px;
-    } */
+    /* dragular */
+    /* in-flight clone */
+.gu-mirror {
+  position: fixed !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+  pointer-events: none;
+}
+/* high-performance display:none; helper */
+.gu-hide {
+  left: -9999px !important;
+}
+/* added to mirrorContainer (default = body) while dragging */
+.gu-unselectable {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+/* added to the source element while its mirror is dragged */
+.gu-transit {
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
+}
 
-    .flip-card {
-      position: relative;
-      width: 250px;
-      height: 300px;
-      /* margin: 1rem auto; */
-      -webkit-transform-style: preserve-3d;
-              transform-style: preserve-3d;
-      -webkit-transform         : transform 1s;
-          -ms-transform         : transform 1s;
-              transform         : transform 1s;
-    }
-    .side {
-       width: 100%;
-      height: 100%;
-      position: absolute;
 
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 1em;
+}
 
-      color: #fff;
-      text-align: center;
-      line-height: 100px;
-      font-size: 24px;
-      font-weight: 700;
-      cursor: pointer;
-      -webkit-user-select: none;
-         -moz-user-select: none;
-          -ms-user-select: none;
-              user-select: none;
-    }
-    .front {
-      -webkit-transform : rotateY(0deg);
-      -ms-transform     : rotateY(0deg);
-      transform         : rotateY(0deg);
-    }
-    .back {
-      -webkit-transform : rotateY(-180deg);
-      -ms-transform     : rotateY(-180deg);
-      transform         : rotateY(-180deg);
-    }
+
+.flex{
+  flex-grow: 2;
+  flex-shrink: 1;
+  flex-basis: 0%;
+}
+
+
+.p2{
+  margin: 30px auto
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; /* Create 2 columns and auto-place rows */
+}
