@@ -40,4 +40,8 @@ export class ArrangementInfoService {
     return this.http.delete(this.apiUrl + '/ArrangementInfoes/' + val);
   }
 
+  getNullStatus():Observable<any[]>{
+    return this.http.get<any>(this.apiUrl + '/ArrangementInfoes/status');
+
+  }
 }

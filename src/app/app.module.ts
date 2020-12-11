@@ -40,7 +40,7 @@ import { DriverInfoService } from './_core/_services/driver-info.service';
 import { RouteInfoService } from './_core/_services/route-info.service';
 import { CarDriverService } from './_core/_services/car-driver.service';
 import { CarInfoService } from './_core/_services/car-info.service';
-
+import { DragulaService} from 'ng2-dragula';
 
 
 const APP_CONTAINERS = [

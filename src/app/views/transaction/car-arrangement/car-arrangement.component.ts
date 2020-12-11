@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { data } from 'jquery';
 import { DragulaService } from 'ng2-dragula';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -19,21 +20,50 @@ export class CarArrangementComponent implements OnInit {
   carInfoData : any = [];
   routeInfoData: any = [];
   arrangementData: any = [];
+  okarrangementData: any =[];
+  ARRANGEMENT = "ARRANGEMENT";
+
+  subs = new Subscription();
 
 
   full: boolean = true;
 
   constructor(private service : CarInfoService, private dragulaService: DragulaService, private routeService : RouteInfoService, private arrangementService : ArrangementInfoService)  {
-    this.dragulaService.createGroup("USER", {
+
+  //   this.subs.add(this.dragulaService.drag("ARRANGEMENT")
+  //   .subscribe(({ name, el, source }) => {
+  //     // ...
+  //     console.log({ name, el, source })
+  //   })
+  // );
+  // this.subs.add(this.dragulaService.drop("ARRANGEMENT")
+  //   .subscribe(({ name, el, target, source, sibling }) => {
+  //     // ...
+  //     console.log({ name, el, source })
+
+  //   })
+  // );
+  // some events have lots of properties, just pick the ones you need
+  this.dragulaService.dropModel()
+    // WHOA
+    // .subscribe(({ name, el, target, source, sibling, sourceModel, targetModel, item }) => {
+    .subscribe((value) => {
       // ...
-    });
 
-    this.dragulaService.dropModel("USER").subscribe(args => {
-      console.log(args);
-    });
+      console.log(value.item.arrangementId)
+
+    })
+  ;
+
+  }
+
+  private onDropModel(args) {
+    //Here, this.playlists contains the elements reordered
+}
 
 
-   }
+
+
 
   ngOnInit(): void {
     this.refreshData();
@@ -50,12 +80,15 @@ export class CarArrangementComponent implements OnInit {
     this.routeService.getData().subscribe(data => {
       this.routeInfoData = data;
       console.log(this.routeInfoData);
+
     });
 
-    this.arrangementService.getData().subscribe(data => {
+    this.arrangementService.getNullStatus().subscribe(data => {
       this.arrangementData = data;
       console.log(this.arrangementData);
     });
+
+
   }
 
   test(val: string){
