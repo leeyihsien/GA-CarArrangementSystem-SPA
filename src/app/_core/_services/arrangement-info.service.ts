@@ -27,6 +27,10 @@ export class ArrangementInfoService {
     return this.http.get<any>(this.apiUrl + '/ArrangementInfoes');
   }
 
+  getByDate(val: any):Observable<any[]>{
+    return this.http.get<any>(this.apiUrl + '/ArrangementInfoes/searchdate/' + val);
+  }
+
 
   addData(val: any){
     return this.http.post(this.apiUrl + '/ArrangementInfoes', val, {observe: 'response'});

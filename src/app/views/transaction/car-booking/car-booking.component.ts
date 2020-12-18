@@ -30,8 +30,7 @@ export class CarBookingComponent implements OnInit, AfterViewInit{
   minuteStep: string = '15';
   private _isPickerOpen = false;
   showCalendar = true;
-  BackonOff : boolean = false;
-  LeaveonOff: boolean = true;
+  routeType: string ;
 
   @Input() newBooking: any;
   arrangementId: string;
@@ -117,7 +116,7 @@ export class CarBookingComponent implements OnInit, AfterViewInit{
     // this.userPhone = this.newBooking.userPhone;
     // this.routeId = this.newBooking.routeId;
     // this.departureTime = this.newBooking.departureTime;
-    // this.carId = this.newBooking.carId;
+    this.carId = 'no';
     // this.driverId = this.newBooking.driverId;
      this.arrangementStatus = 'test';
     // this.arrangementRemark = this.newBooking.arrangementRemark;
@@ -158,7 +157,10 @@ export class CarBookingComponent implements OnInit, AfterViewInit{
     }
   );
 
-
   }
+
+
+
+
 
 }

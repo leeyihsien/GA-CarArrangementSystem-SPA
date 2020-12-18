@@ -1,12 +1,17 @@
+import { DriverInfoService } from './../../../_core/_services/driver-info.service';
+import { navItems } from './../../../_nav';
+import { map } from 'rxjs/operators';
 import { ArrangementInfoService } from './../../../_core/_services/arrangement-info.service';
 import { RouteInfoService } from './../../../_core/_services/route-info.service';
 import { carInfo } from './../../../_core/_models/carInfo';
 import { CarInfoService } from './../../../_core/_services/car-info.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { data } from 'jquery';
 import { DragulaService } from 'ng2-dragula';
 import { Subscription } from 'rxjs';
+import { isNgTemplate } from '@angular/compiler';
+import * as dragula from 'dragula';
 
 
 @Component({
@@ -15,12 +20,26 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./car-arrangement.component.css'],
 
 })
-export class CarArrangementComponent implements OnInit {
+export class CarArrangementComponent implements OnInit, OnDestroy {
 
   carInfoData : any = [];
   routeInfoData: any = [];
   arrangementData: any = [];
-  okarrangementData: any =[];
+  driverInfoData: any = [];
+  driverId : string ;
+
+  public arrangement: Array<any> = [
+    {
+      carId: 'no',
+      data: []
+    },
+
+  ]
+
+
+
+
+
   ARRANGEMENT = "ARRANGEMENT";
 
   subs = new Subscription();
@@ -28,52 +47,80 @@ export class CarArrangementComponent implements OnInit {
 
   full: boolean = true;
 
-  constructor(private service : CarInfoService, private dragulaService: DragulaService, private routeService : RouteInfoService, private arrangementService : ArrangementInfoService)  {
+  constructor(private service : CarInfoService, private dragulaService: DragulaService, private routeService : RouteInfoService, private arrangementService : ArrangementInfoService, private driverInfoService:DriverInfoService )  {
 
-  //   this.subs.add(this.dragulaService.drag("ARRANGEMENT")
-  //   .subscribe(({ name, el, source }) => {
-  //     // ...
-  //     console.log({ name, el, source })
-  //   })
-  // );
-  // this.subs.add(this.dragulaService.drop("ARRANGEMENT")
-  //   .subscribe(({ name, el, target, source, sibling }) => {
-  //     // ...
-  //     console.log({ name, el, source })
+  this.dragulaService.createGroup("ARRANGEMENT_COL", {
+    direction: "horizontal",
+    moves: (el, source, handle) => handle.className === "group-handle",
 
-  //   })
-  // );
-  // some events have lots of properties, just pick the ones you need
-  this.dragulaService.dropModel()
-    // WHOA
-    // .subscribe(({ name, el, target, source, sibling, sourceModel, targetModel, item }) => {
-    .subscribe((value) => {
-      // ...
+   })
 
-      console.log(value.item.arrangementId)
+   this.subs.add(
+    dragulaService
+      .dropModel(this.ARRANGEMENT)
+      .subscribe(({ el, target, source, sourceModel, targetModel, item }) => {
+        console.log("dropModel:");
+        console.log(el);
+        console.log(source);
+        console.log(target);
+        console.log(sourceModel);
+        console.log(targetModel);
+        console.log(item);
+
+
+        //change the carId in arrangement
+      const targetID = $(target).attr("id");
+       item.carId = targetID
+
+
+       //change the status
+       item.arrangementStatus = 'success'
+
+
+       //change driver
+       item.driverId = this.arrangement.find( x => x.carId === targetID).pickdriver
+
+       this.arrangementService.updateData(item).subscribe(res => {
+        console.log(res.status)
+      })
+
+      console.log(item);
+
+
 
     })
-  ;
+  );
 
-  }
-
-  private onDropModel(args) {
-    //Here, this.playlists contains the elements reordered
 }
 
 
 
-
-
   ngOnInit(): void {
-    this.refreshData();
+    let today = new Date().toISOString().slice(0, 10);
+    this.refreshData(today);
   }
 
+  ngOnDestroy() {
+    this.dragulaService.destroy('ARRANGEMENT_COL');
+}
 
-  refreshData(){
+  refreshData(searchdate: string){
     this.service.getData().subscribe(data => {
       this.carInfoData = data;
       console.log(this.carInfoData);
+
+      var i : number;
+      var num : number = this.carInfoData.length;
+
+      for (i=0; i<num; i++){
+        this.arrangement.push({
+          carId: this.carInfoData[i].carId,
+          carPassengerVolume: this.carInfoData[i].carPassengerVolume,
+          pickdriver:"",
+          data: [] })
+        }
+      console.log(this.arrangement);
+
     });
 
 
@@ -83,33 +130,92 @@ export class CarArrangementComponent implements OnInit {
 
     });
 
-    this.arrangementService.getNullStatus().subscribe(data => {
-      this.arrangementData = data;
-      console.log(this.arrangementData);
+    this.driverInfoService.getData().subscribe( data => {
+      this.driverInfoData = data;
+      console.log(this.driverInfoData)
+
+
+    })
+
+  }
+
+
+
+  search(){
+
+    var i : number;
+    var j : number;
+    var num1 : number = this.arrangement.length;
+    var num2 : number = this.arrangementData.length;
+    var inputValue: string  = (<HTMLInputElement>document.getElementById("date-input")).value;
+
+
+    this.emptyArray(this.arrangement);
+
+    this.arrangementService.getByDate(inputValue).subscribe(item => {
+
+
+      this.arrangementData = item;
+
+      this.putIntoArray(this.arrangement, this.arrangementData)
+
     });
 
 
-  }
-
-  test(val: string){
-    alert(val);
+      console.log(this.arrangement);
   }
 
 
-  trackByIndex(index, carInfo){
-    return carInfo.carId;
+  emptyArray(arrangement: any){
+    var i : number;
+    var num1 : number = arrangement.length;
+
+    for(i=0; i<num1; i++){
+      arrangement[i].data = [];
+      arrangement[i].pickdriver = "";
+    }
   }
 
 
-  public isCollapsed: boolean[] = [];
+  putIntoArray(arrangement: any, arrangementData:any){
+    var i : number;
+    var j : number;
+    var num1 : number = arrangement.length;
+    var num2 : number = arrangementData.length;
 
+    for (i=0; i<num1; i++){
+      for(j=0; j<num2;j++){
+        if (arrangement[i].carId == arrangementData[j].carId){
+          arrangement[i].data.push(arrangementData[j])
+          arrangement[i].pickdriver = arrangement[i].data[0].driverId;
+        }
 
-  collapsed(event: any): void {
-    // console.log(event);
+      }
+    }
   }
 
-  expanded(event: any): void {
-    // console.log(event);
+  changeSelectedItem(filterVal: any, val:any, val2:any) {
+    console.log(filterVal);
+    console.log(val);
+    console.log(val2);
+
+    var i : number;
+    var num1 : number = val2.length;
+
+    for(i=0; i<num1; i++){
+      val2[i].driverId = val;
+      this.arrangementService.updateData(val2[i]).subscribe(res => {
+        console.log(res.status)
+      })
+    }
+
+
+    console.log(val2);
+    console.log(this.arrangement)
+
+
   }
+
 
 }
+

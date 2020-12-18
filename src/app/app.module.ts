@@ -68,6 +68,7 @@ import { RouteInfoModule } from './views/route-info/route-info.module';
 import { CarInfoModule } from './views/car-info/car-info.module';
 import { DriverInfoModule } from './views/driver-info/driver-info.module';
 import { TransactionModule } from './views/transaction/transaction.module';
+import { QueryModule } from './views/query/query.module';
 
 
 @NgModule({
@@ -95,6 +96,7 @@ import { TransactionModule } from './views/transaction/transaction.module';
     DriverInfoModule,
     DataTablesModule,
     TransactionModule,
+    QueryModule,
   ],
   declarations: [
     AppComponent,

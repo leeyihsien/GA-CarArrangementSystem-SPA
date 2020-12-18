@@ -1,5 +1,4 @@
-import { RouteInfoComponent } from './views/route-info/route-info.component';
-import { CarInfoComponent } from './views/car-info/car-info.component';
+
 
 
 import { NgModule } from '@angular/core';
@@ -117,6 +116,10 @@ export const routes: Routes = [
       {
         path: 'transaction',
         loadChildren: () => import('./views/transaction/transaction.module').then(m => m.TransactionModule)
+      },
+      {
+        path: 'query',
+        loadChildren: () => import('./views/query/query.module').then(m => m.QueryModule)
       },
     ]
   },

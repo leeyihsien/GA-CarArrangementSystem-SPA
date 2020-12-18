@@ -1,71 +1,110 @@
-<div class="row">
+<div class ="row">
 
-  <div class="col-12 p2">
-    <!-- Nav tabs -->
-    <tabset>
-
-
-              <tab *ngFor="let Routedata of routeInfoData">
-
-
-              <ng-template tabHeading>
-                <i class="icon-list"></i> {{Routedata.routeId}} &nbsp;
-                <span class="badge badge-success">New</span>
-              </ng-template>
-
-
-
-                <ng-container>
-                  <!-- <div dragula="ARRANGEMENT"> -->
-                    <h6>the passenger is here!</h6>
-                    <div class="container" dragula="ARRANGEMENT" [dragulaModel] = "arrangementData">
-                        <div *ngFor="let data of arrangementData">
-                        <div class="btn btn-block btn-primary " *ngIf="(data.routeId == Routedata.routeId)">
-                          {{data.arrangementId}}</div>
-                        </div>
-                    </div>
-                  <!-- </div> -->
-                </ng-container>
-
-
-            </tab>
-
-    </tabset>
-  </div><!--/.col-->
-
-
-<div class="col-sm-6 col-lg-3" *ngFor="let Cardata of carInfoData; let i = index;">
-  <div class="card text-white bg-success " *ngIf="full" >
-
-    <div class="card-header">
-
-      <div class="h1 text-muted text-left mb-4" >
-      <i class="fa fa-car fa-lg mt-4"></i>
-      <small class="text-muted text-uppercase font-weight-bold h4 mb-0">{{Cardata.carId}}</small>
-    </div>
-      <!-- <small class="text-muted text-uppercase font-weight-bold h4 mb-0">{{data.carId}}</small> -->
-      <div class="h6 mb-0">Remaining position :
-      <label class="h4 mb-0">{{ (Cardata.carPassengerVolume-1)}}</label>
-    </div>
-    <button class="btn btn-secondary float-right" (click)="isCollapsed[i] = !isCollapsed[i]" > show more </button>
-    </div>
-
-
-    <div class="card-body" dragula="ARRANGEMENT"  [dragulaModel] = "okarrangementData">
-
-      <div class="row">
-        <div *ngFor="let data of arrangementData">
-          </div>
+      <div class="col-lg-6">
+        <div class="input-group">
+          <input class="form-control" id="date-input" type="date" name="date-input" placeholder="date">
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button" (click)="search()">Go!</button>
+          </span>
+        </div>
       </div>
 
-    </div>
 
+    <div class="col-12 p2">
+        <!-- Nav tabs -->
+        <tabset >
+
+
+
+
+                  <tab *ngFor="let Routedata of routeInfoData">
+
+                      <ng-template tabHeading>
+                        <i class="icon-list"></i> {{Routedata.routeId}} &nbsp;
+                        <span class="badge badge-pill badge-danger" *ngIf="(arrangement[0].data.length > 0 )">New</span>
+                      </ng-template>
+
+
+
+                        <div dragula="ARRANGEMENT_COL" [(dragulaModel)] = "arrangement">
+                          <div *ngFor="let data of arrangement;" >
+                            <div *ngIf="(data.carId == 'no')">
+                                <div class="row card-body" id= "{{data.carId}}" dragula="ARRANGEMENT" [(dragulaModel)]="data.data" >
+                                  <div class="col-sm-8 col-md-2" *ngFor="let arr of data.data">
+                                      <div class="btn btn-pill btn-primary element" *ngIf="(arr.routeId == Routedata.routeId)" [innerHTML]="arr.arrangementId" ></div>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+
+
+                </tab>
+
+
+        </tabset>
+    </div><!--/.col-->
   </div>
 
 
 
-</div><!--/.col-->
-</div>
+
+
+      <div dragula="ARRANGEMENT_COL" [(dragulaModel)] = "arrangement">
+        <div class="row">
+        <div  class="col-sm-6 col-md-4" *ngFor="let Cardata of arrangement | slice:1; let i = index;">
+
+            <div class="card text-white bg-success">
+
+                <div class="card-header">
+                            <div class="h1 text-muted text-left mb-4" >
+                                <i class="fa fa-car fa-lg mt-4"></i>
+                                <small class="text-muted text-uppercase font-weight-bold h4 mb-0">{{Cardata.carId}}</small>
+                            </div>
+
+
+                            <div class="row">
+
+                              <div class="col">
+                            <div class="h6 mb-0">Remaining position :
+                              <label class="h4 mb-0">{{ Cardata.carPassengerVolume-(Cardata.data.length)}}</label>
+                            </div>
+                          </div>
+
+
+
+                          <div class="form-group row" *ngIf="(Cardata.data.length > 0)">
+
+                            <label class="col-form-label h6 mb-0">Driver :</label>
+
+                            <div class="col-md-9">
+                              <select class="form-control" (change)="changeSelectedItem($event.target.value, Cardata.pickdriver,Cardata.data)" [(ngModel)] = "Cardata.pickdriver">
+                                <option *ngFor="let driver of driverInfoData" value="{{driver.driverId}}">{{driver.driverId}} {{driver.driverName}}</option>
+                              </select>
+                              </div>
+
+                          </div>
+
+                        </div>
+
+
+                </div>
+
+                <div id= "{{Cardata.carId}}" class = "card-body" dragula="ARRANGEMENT" [(dragulaModel)]="Cardata.data" >
+                      <div class="btn btn-block btn-primary element" *ngFor="let arr of Cardata.data" [innerHTML]="arr.arrangementId"></div>
+                  </div>
+
+            </div>
+
+        </div>
+
+
+      </div>
+    </div>
+
+
+
+
 
 
 

@@ -1,9 +1,9 @@
 <div class="animated fadeIn">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-8 ">
       <div class="card">
         <div class="card-header">
-          <strong>Leaving the factory</strong>
+          <strong>Car Booking</strong>
         </div>
         <div class="card-body" >
           <div class="row">
@@ -39,39 +39,68 @@
             </div>
           </div><!--/.row-->
 
-          <div class="row">
-            <div class="form-group col-sm-4">
-              <label for="leaverouteId">Route Id</label>
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="inline-radios">Choose the route type</label>
+              <div class="col-md-9 col-form-label">
+                <div class="form-check form-check-inline mr-3" id="inline-radios">
+                  <input class="form-check-input" type="radio" name="route" id="leaveroute" value="leaveroute" [(ngModel)]="routeType">
+                  <label class="form-check-label" for="leaveroute">Leave the factory</label>
+                </div>
+                <div class="form-check form-check-inline mr-3">
+                  <input class="form-check-input" type="radio" name="route" id="backroute" value="backroute"  [(ngModel)]="routeType">
+                  <label class="form-check-label" for="backroute">Back to the factory</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label"> Choose the Route Id</label>
+
+            <div class="form-group col-sm-4" *ngIf="(routeType == 'leaveroute')">
               <select class="form-control" id="leaverouteId" [(ngModel)]="routeId">
-                <option *ngFor="let route of Leaveroutes" [ngValue]="routeId">{{route.routeId}}</option>
+                <option *ngFor="let route of Leaveroutes" value="{{route.routeId}}">{{route.routeId}}</option>
               </select>
             </div>
 
+            <div class="form-group col-sm-4" *ngIf="(routeType == 'backroute')">
+              <select class="form-control" id="backrouteId" [(ngModel)]="routeId">
+                <option *ngFor="let route of Backroutes" value="{{route.routeId}}">{{route.routeId}}</option>
+              </select>
+            </div>
+
+            </div>
+
+
+
             <!-- Datepicker -->
-            <div class="form-group col-sm-8">
-              <label for="leavedepartureTime">Departure Time</label>
-              <!-- <input class="form-control" id="departureTime" type="date" name="departureTime" placeholder="date"> -->
-              <div class="input-group">
-              <input id="date-input" type="text" class="form-control col-xs-8" aria-label="Date" required
-               dlDateTimeInput
-               [dlDateTimeInputFilter]="dateInputFilter"
-               [(ngModel)]="departureTime">
-               <span class="input-group-append">
-                <button class="btn btn-primary dropdown-toggle date-dropdown" type="button" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="false">
-                      <span class="glyphicon glyphicon-calendar"></span> Choose Time</button>
-                <div class="dropdown-menu" (click)="keepDropDownOpen($event)">
-							  <div style="width:300px;">
-								<dl-date-time-picker *ngIf="showCalendar" [(startView)]="startView" [(minuteStep)]="minuteStep" [(ngModel)]="departureTime"
-									(change)="dateSelected($event)" [selectFilter]="datePickerFilter">
-                </dl-date-time-picker>
-              </div>
-              </div>
-            </span>
-						</div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="leavedepartureTime">Departure Time</label>
+              <div class="form-group col-sm-8">
+
+                    <div class="input-group">
+                    <input id="date-input" type="text" class="form-control col-xs-8" aria-label="Date" required
+                    dlDateTimeInput
+                    [dlDateTimeInputFilter]="dateInputFilter"
+                    [(ngModel)]="departureTime">
+                    <span class="input-group-append">
+                      <button class="btn btn-primary dropdown-toggle date-dropdown" type="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-calendar"></span> Choose Time</button>
+                      <div class="dropdown-menu" (click)="keepDropDownOpen($event)">
+                      <div style="width:300px;">
+                      <dl-date-time-picker *ngIf="showCalendar" [(startView)]="startView" [(minuteStep)]="minuteStep" [(ngModel)]="departureTime"
+                        (change)="dateSelected($event)" [selectFilter]="datePickerFilter">
+                      </dl-date-time-picker>
+                    </div>
+                    </div>
+                  </span>
+                  </div>
+
+                </div>
             </div>
             <!-- Datepicker -->
-          </div><!--/.row-->
+          <!--/.row-->
 
           <div class="row">
             <div class="col-sm-12">
@@ -91,93 +120,8 @@
       </div>
     </div><!--/.col-->
 
-    <div class="col-sm-6">
-      <div class="card">
-        <div class="card-header">
-          <strong>Back to the factory</strong>
-        </div>
-        <div class="card-body" >
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="form-group">
-                <label for="backarrangementId">Arrangement Id</label>
-                <input type="text" class="form-control" id="arrangementId" placeholder="The system will automatically insert the serial number" [(ngModel)]="arrangementId"  disabled=true>
-              </div>
-            </div>
-          </div><!--/.row-->
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="form-group">
-                <label for="backuserId">User Id</label>
-                <input type="text" class="form-control" id="backuserId" placeholder="Please enter your ID"  [(ngModel)]="userId">
-              </div>
-            </div>
-          </div><!--/.row-->
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="form-group">
-                <label for="backuserName">User Name</label>
-                <input type="text" class="form-control" id="backuserName" placeholder="Please enter your name"  [(ngModel)]="userName">
-              </div>
-            </div>
-          </div><!--/.row-->
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="form-group">
-                <label for="backuserPhone">User Phone</label>
-                <input type="text" class="form-control" id="backuserPhone" placeholder="Please enter your cellphone number"  [(ngModel)]="userPhone">
-              </div>
-            </div>
-          </div><!--/.row-->
 
-          <div class="row">
-            <div class="form-group col-sm-4">
-              <label for="backrouteId">Route Id</label>
-              <select class="form-control" id="backrouteId" [(ngModel)]="routeId">
-                <option *ngFor="let route of Backroutes" [ngValue]="routeId">{{route.routeId}}</option>
-              </select>
-            </div>
 
-            <!-- Datepicker -->
-            <div class="form-group col-sm-8">
-              <label for="backdepartureTime">Departure Time</label>
-              <!-- <input class="form-control" id="departureTime" type="date" name="departureTime" placeholder="date"> -->
-              <div class="input-group">
-              <input id="date-input" type="text" class="form-control col-xs-8" aria-label="Date" required
-               dlDateTimeInput
-               [dlDateTimeInputFilter]="dateInputFilter"
-               [(ngModel)]="departureTime">
-               <span class="input-group-append">
-                <button class="btn btn-primary dropdown-toggle date-dropdown" type="button" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="false">
-                      <span class="glyphicon glyphicon-calendar"></span> Choose Time</button>
-                <div class="dropdown-menu" (click)="keepDropDownOpen($event)">
-							  <div style="width:300px;">
-								<dl-date-time-picker *ngIf="showCalendar" [(startView)]="startView" [(minuteStep)]="minuteStep" [(ngModel)]="departureTime"
-									(change)="dateSelected($event)" [selectFilter]="datePickerFilter">
-                </dl-date-time-picker>
-              </div>
-              </div>
-            </span>
-						</div>
-            </div>
-            <!-- Datepicker -->
-          </div><!--/.row-->
 
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="form-group">
-                <label for="backarrangementRemark"> Remark</label>
-                <input type="text" class="form-control" id="arrangementRemark" placeholder="Please enter remark"  [(ngModel)]="arrangementRemark">
-              </div>
-            </div>
-          </div><!--/.row-->
-
-        </div>
-
-        <div class="card-footer">
-          <button type="submit" class="btn btn-sm btn-primary float-right" (click) = "addBooking()"><i class="fa fa-dot-circle-o"></i> Submit</button>
-        </div>
-      </div>
-    </div><!--/.col-->
   </div><!--/.row-->
+</div>

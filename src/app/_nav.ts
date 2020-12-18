@@ -288,7 +288,7 @@ export const navItems: INavData[] = [
     children: [
       {
         name: '3.1 Passenger Query',
-        url: '/query/booking',
+        url: '/query/passenger',
         icon: 'fa fa-cogs'
       },
       {
