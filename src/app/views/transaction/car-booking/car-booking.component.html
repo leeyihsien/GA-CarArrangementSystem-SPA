@@ -16,25 +16,33 @@
           </div><!--/.row-->
           <div class="row">
             <div class="col-sm-12">
-              <div class="form-group">
-                <label for="leaveuserId">User Id</label>
-                <input type="text" class="form-control" id="leaveuserId" placeholder="Please enter your ID"  [(ngModel)]="userId">
+              <div class="form-group ">
+                <form class = "was-validated">
+                  <label for="userId">User Id</label>
+                <input type="text" class="form-control" name="userId" id="userId" placeholder="Please enter your ID"  [(ngModel)]="userId" required>
+                <div class="valid-feedback" >
+                  Input is valid.
+                </div>
+                <div class="invalid-feedback">
+                  Please enter your ID.
+                </div>
+                </form>
               </div>
             </div>
           </div><!--/.row-->
           <div class="row">
             <div class="col-sm-12">
               <div class="form-group">
-                <label for="leaveuserName">User Name</label>
-                <input type="text" class="form-control" id="leaveuserName" placeholder="Please enter your name"  [(ngModel)]="userName">
+                <label for="userName">User Name</label>
+                <input type="text" class="form-control" id="userName" placeholder="Please enter your name"  [(ngModel)]="userName">
               </div>
             </div>
           </div><!--/.row-->
           <div class="row">
             <div class="col-sm-12">
               <div class="form-group">
-                <label for="leaveuserPhone">User Phone</label>
-                <input type="text" class="form-control" id="leaveuserPhone" placeholder="Please enter your cellphone number"  [(ngModel)]="userPhone">
+                <label for="userPhone">User Phone</label>
+                <input maxlength = "10" type="text" class="form-control" id="userPhone" placeholder="Please enter your cellphone number"  [(ngModel)]="userPhone">
               </div>
             </div>
           </div><!--/.row-->
@@ -75,7 +83,7 @@
 
             <!-- Datepicker -->
             <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="leavedepartureTime">Departure Time</label>
+              <label class="col-md-3 col-form-label" for="departureTime">Departure Time</label>
               <div class="form-group col-sm-8">
 
                     <div class="input-group">
@@ -105,7 +113,7 @@
           <div class="row">
             <div class="col-sm-12">
               <div class="form-group">
-                <label for="leavearrangementRemark"> Remark</label>
+                <label for="arrangementRemark"> Remark</label>
                 <input type="text" class="form-control" id="arrangementRemark" placeholder="Please enter remark"  [(ngModel)]="arrangementRemark">
               </div>
             </div>

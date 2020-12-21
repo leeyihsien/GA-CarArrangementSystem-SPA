@@ -1,10 +1,86 @@
-<div class="row">
-  <div class="col-lg-6">
-    <div class="input-group">
-      <input class="form-control" id="date-input" type="date" name="date-input" placeholder="date">
-      <span class="input-group-btn">
-        <button class="btn btn-secondary" type="button">Go!</button>
-      </span>
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+
+        <div class="card-header">
+
+          <h3>Search</h3>
+
+        <div class="form-group row">
+
+
+
+            <div class="col-lg-4">
+              <label>Choose the Car ID</label>
+            <div class="input-group">
+              <select class="form-control" [(ngModel)]="input_car">
+                <option *ngFor="let car of carInfoData" value="{{car.carId}}">{{car.carId}}</option>
+              </select>            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <label>Choose the departure date </label>
+            <div class="input-group">
+              <input class="form-control" id="date-input" type="date" name="date-input" placeholder="date"  [(ngModel)] = input_date>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <label>&nbsp;</label>
+            <div class="input-group">
+            <button class="btn btn-primary" type="button" (click) = search($event)>Search</button>
+          </div>
+          </div>
+
+        </div>
+
+
+
+
+        </div>
+
+          <div class="card-body">
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover stripe nowrap">
+            <!-- 宣告欄位名稱 -->
+            <thead>
+              <tr>
+                <th>ArrangementId</th>
+                <th>CarId</th>
+                <th>DepartureTime</th>
+                <th>ArrangementStatus</th>
+                <th>Action</th>
+             </tr>
+            </thead>
+           <!-- 宣告欄位名稱 -->
+
+           <!-- 宣告資料表表身 -->
+            <tbody>
+              <tr *ngFor="let data of arrangementInfoData">
+                <td>{{data.arrangementId}}</td>
+                <td>{{data.carId}}</td>
+                <td>{{data.departureTime}}</td>
+                <td>
+                  <span class="badge badge-success" *ngIf="(data.arrangementStatus == 'success')">Success</span>
+                  <span class="badge badge-secondary" *ngIf="(data.arrangementStatus == 'test')">test</span>
+                  <span class="badge badge-danger" *ngIf="(data.arrangementStatus == '' || data.arrangementStatus == null)">Cancel</span>
+                </td>
+                <td>
+                  <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+                  <button type="button" class="btn btn-primary">
+                    <i class="icon-eye icons font-1x2 "></i>
+                    Details
+                  </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <!-- 宣告資料表表身 -->
+          </table>
+
+      </div>
     </div>
+    <!--/.col-->
   </div>
+</div><!--/.row-->
 </div>

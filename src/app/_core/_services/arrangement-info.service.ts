@@ -31,6 +31,18 @@ export class ArrangementInfoService {
     return this.http.get<any>(this.apiUrl + '/ArrangementInfoes/searchdate/' + val);
   }
 
+  getByDateAndId(val1: any,val2:any):Observable<any[]>{
+    return this.http.get<any>(this.apiUrl + '/ArrangementInfoes/PassengerSearch/' + val1 + '/' + val2);
+  }
+
+  getByDateAndRoute(val1: any,val2:any):Observable<any[]>{
+    return this.http.get<any>(this.apiUrl + '/ArrangementInfoes/ManagerSearch/' + val1 + '/' + val2);
+  }
+
+  getByDateAndCar(val1: any,val2:any):Observable<any[]>{
+    return this.http.get<any>(this.apiUrl + '/ArrangementInfoes/DriverSearch/' + val1 + '/' + val2);
+  }
+
 
   addData(val: any){
     return this.http.post(this.apiUrl + '/ArrangementInfoes', val, {observe: 'response'});

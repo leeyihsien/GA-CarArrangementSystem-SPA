@@ -21,6 +21,8 @@ export class PassengerQueryComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject<any>();
 
   arrangementInfoData : any = [];
+  input_id : string ;
+  input_date : string;
 
   ngAfterViewInit(): void {
     this.dtTrigger.next();
@@ -51,6 +53,14 @@ export class PassengerQueryComponent implements OnInit {
 
   refreshData(){
     this.service.getData().subscribe(data => {
+      this.arrangementInfoData = data;
+      console.log(this.arrangementInfoData);
+      this.rerender();
+    });
+  }
+
+  search (event){
+    this.service.getByDateAndId(this.input_id, this.input_date).subscribe(data => {
       this.arrangementInfoData = data;
       console.log(this.arrangementInfoData);
       this.rerender();

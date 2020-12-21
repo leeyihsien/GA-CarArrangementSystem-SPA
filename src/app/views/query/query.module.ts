@@ -6,6 +6,8 @@ import { PassengerQueryComponent } from './passenger-query/passenger-query.compo
 import { DriverQueryComponent } from './driver-query/driver-query.component';
 import { ManagerQueryComponent } from './manager-query/manager-query.component';
 import { FormsModule } from '@angular/forms';
+import { DataTablesModule } from 'angular-datatables';
+
 
 
 @NgModule({
@@ -14,6 +16,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     QueryRoutingModule,
     FormsModule,
+    DataTablesModule
   ]
 })
 export class QueryModule { }

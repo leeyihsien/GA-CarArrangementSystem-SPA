@@ -16,21 +16,21 @@
             <div class="col-lg-4">
               <label>Enter your ID</label>
             <div class="input-group">
-              <input type="text" id="input1-group2" name="input1-group2" class="form-control" placeholder="Username">
+              <input type="text" id="input1-group2" name="input1-group2" class="form-control" placeholder="Username" [(ngModel)] = input_id>
             </div>
           </div>
 
           <div class="col-lg-4">
             <label>Choose the departure date </label>
             <div class="input-group">
-              <input class="form-control" id="date-input" type="date" name="date-input" placeholder="date">
+              <input class="form-control" id="date-input" type="date" name="date-input" placeholder="date"  [(ngModel)] = input_date>
             </div>
           </div>
 
           <div class="col-lg-4">
             <label>&nbsp;</label>
             <div class="input-group">
-            <button class="btn btn-primary" type="button">Search</button>
+            <button class="btn btn-primary" type="button" (click) = search($event)>Search</button>
           </div>
           </div>
 
@@ -42,43 +42,42 @@
         </div>
 
           <div class="card-body">
-          <!-- <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover stripe nowrap"> -->
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover stripe nowrap">
             <!-- 宣告欄位名稱 -->
-            <!-- <thead>
+            <thead>
               <tr>
+                <th>ArrangementId</th>
                 <th>CarId</th>
-                <th>CarBrand</th>
-                <th>CarOwner</th>
-                <th>CarPassengerVolume</th>
+                <th>DepartureTime</th>
+                <th>ArrangementStatus</th>
                 <th>Action</th>
              </tr>
-            </thead> -->
+            </thead>
            <!-- 宣告欄位名稱 -->
 
            <!-- 宣告資料表表身 -->
-            <!-- <tbody>
-              <tr *ngFor="let data of carInfoData">
+            <tbody>
+              <tr *ngFor="let data of arrangementInfoData">
+                <td>{{data.arrangementId}}</td>
                 <td>{{data.carId}}</td>
-                <td>{{data.carBrand}}</td>
-                <td>{{data.carOwner}}</td>
-                <td>{{data.carPassengerVolume}}</td>
+                <td>{{data.departureTime}}</td>
+                <td>
+                  <span class="badge badge-success" *ngIf="(data.arrangementStatus == 'success')">Success</span>
+                  <span class="badge badge-secondary" *ngIf="(data.arrangementStatus == 'test')">test</span>
+                  <span class="badge badge-danger" *ngIf="(data.arrangementStatus == '' || data.arrangementStatus == null)">Cancel</span>
+                </td>
                 <td>
                   <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
-                  <button type="button" class="btn btn-primary"  data-toggle="modal"
-                  data-target="#exampleModal" (click)="editClick(data)">
-                    <i class="cui-note icons font-1xl mt-4"></i>
-                    Edit
-                  </button>
-                  <button type="button" class="btn btn-danger"  (click)= "deleteClick(data)">
-                    <i class="cui-trash icons font-1xl mt-4"></i>
-                    Delete
+                  <button type="button" class="btn btn-primary">
+                    <i class="icon-eye icons font-1x2 "></i>
+                    Details
                   </button>
                   </div>
                 </td>
               </tr>
-            </tbody> -->
+            </tbody>
             <!-- 宣告資料表表身 -->
-          <!-- </table> -->
+          </table>
 
       </div>
     </div>
