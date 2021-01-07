@@ -15,10 +15,8 @@ import { RegisterComponent } from './views/register/register.component';
 //import component
 import { RouteInfoService } from './_core/_services/route-info.service';
 import { DriverInfoService } from './_core/_services/driver-info.service';
-import { CarDriverService } from './_core/_services/car-driver.service';
 import { CarInfoService } from './_core/_services/car-info.service';
 import { DriverInfoComponent } from './views/driver-info/driver-info.component';
-import { CarDriverComponent } from './views/car-driver/car-driver.component';
 
 
 
@@ -27,11 +25,6 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
-  },
-  {
-    //設定路由
-    path: 'carDriver',
-    component : CarDriverComponent
   },
 
   {
@@ -112,6 +105,10 @@ export const routes: Routes = [
       {
         path: 'driverInfo',
         loadChildren: () => import('./views/driver-info/driver-info.module').then(m => m.DriverInfoModule)
+      },
+      {
+        path: 'routeSchedule',
+        loadChildren: () => import('./views/route-schedule/route-schedule.module').then(m => m.RouteScheduleModule)
       },
       {
         path: 'transaction',

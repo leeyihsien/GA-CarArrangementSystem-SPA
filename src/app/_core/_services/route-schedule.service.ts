@@ -5,37 +5,29 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 
-
 @Injectable({
   providedIn: 'root'
 })
-export class CarInfoService {
+export class RouteScheduleService {
 
   apiUrl = environment.apiUrl;
 
-  carInfo : carInfo = {
-    carId : "",
-    carBrand : "",
-    carOwner : "",
-    carPassengerVolume : 0
-  }
-
   constructor(private http: HttpClient) { }
 
-  getData():Observable<any[]> {
-    return this.http.get<any>(this.apiUrl + '/CarInfoes');
+  getData():Observable<any[]>{
+    return this.http.get<any>(this.apiUrl + '/RouteSchedules');
   }
 
-
-  addData(val: any){
-    return this.http.post(this.apiUrl + '/CarInfoes', val, {observe: 'response'});
+  addData(val:any){
+    return this.http.post(this.apiUrl + '/RouteSchedules', val, {observe: 'response'});
   }
+
 
   updateData(val: any){
-    return this.http.put(this.apiUrl + '/CarInfoes', val,{observe: 'response'});
+    return this.http.put(this.apiUrl + '/RouteSchedules', val,{observe: 'response'});
   }
 
   deleteData(val: any){
-    return this.http.delete(this.apiUrl + '/CarInfoes/' + val);
+    return this.http.delete(this.apiUrl + '/RouteSchedules/' + val);
   }
 }

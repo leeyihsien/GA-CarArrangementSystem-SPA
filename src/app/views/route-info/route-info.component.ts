@@ -1,10 +1,6 @@
 import { RouteInfoService } from './../../_core/_services/route-info.service';
-import { Pagination, PaginatedResult } from './../../_core/_models/pagination';
-import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild, Input, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { DataTableDirective } from 'angular-datatables';
-import { DataTablesModule } from 'angular-datatables';
-import { ModalDirective, ModalModule } from 'ngx-bootstrap/modal';
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
 import { Subject } from 'rxjs';

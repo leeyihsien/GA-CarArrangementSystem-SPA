@@ -250,6 +250,11 @@ export const navItems: INavData[] = [
         url: '/routeInfo',
         icon: 'fa fa-cogs'
       },
+      {
+        name: '1.4 Route Schedule',
+        url: '/routeSchedule',
+        icon: 'fa fa-cogs'
+      },
     ]
   },
 

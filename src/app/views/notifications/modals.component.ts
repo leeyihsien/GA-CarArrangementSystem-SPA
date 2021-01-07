@@ -13,4 +13,7 @@ export class ModalsComponent {
   @ViewChild('warningModal') public warningModal: ModalDirective;
   @ViewChild('dangerModal') public dangerModal: ModalDirective;
   @ViewChild('infoModal') public infoModal: ModalDirective;
+
+
+
 }

@@ -1,5 +1,4 @@
 import { DriverInfoService } from './../../_core/_services/driver-info.service';
-import { Pagination, PaginatedResult } from './../../_core/_models/pagination';
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';

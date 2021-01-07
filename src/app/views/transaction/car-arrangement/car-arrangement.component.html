@@ -21,7 +21,12 @@
 
                       <ng-template tabHeading>
                         <i class="icon-list"></i> {{Routedata.routeId}} &nbsp;
-                        <span class="badge badge-pill badge-danger" *ngIf="(arrangement[0].data.length > 0 )">New</span>
+                        <span *ngFor="let arr of filter">
+                          <span *ngIf="(arr === Routedata.routeId)">
+                            <span class="badge badge-pill badge-danger">New</span>
+                          </span>
+                        </span>
+
                       </ng-template>
 
 

@@ -1,5 +1,4 @@
 import { environment } from './../../../environments/environment.prod';
-import { PaginatedResult } from './../_models/pagination';
 import { HttpClient, HttpClientModule, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';

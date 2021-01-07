@@ -1,0 +1,143 @@
+
+<!-- The Edit Event Modal -->
+
+  <div  class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+
+        <ng-template #editModal>
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">{{ name }}</h4>
+          <button type="button" class="close" data-dismiss="modal" (click) = "modalRef.hide()">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label>Start</label>
+            <div class="input-group date" id="startDate">
+              <input class="form-control" id="date-input" type="date" name="date-input" [(ngModel)]="date">
+              <input class="form-control" id="time-input" type="time" name="time-input" [(ngModel)]="time">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="checkbox">
+                <label><input type="checkbox" id="chkIsFullDay" checked="checked" />  Is Full Day event</label>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label>End</label>
+            <div class="input-group date" id="endDate">
+              <input class="form-control" id="date-input" type="date" name="date-input" placeholder="date">
+              <input class="form-control" id="time-input" type="time" name="time-input" placeholder="time">
+            </div>
+        </div>
+
+        <div class="form-group">
+          <div class="checkbox">
+              <label><input type="checkbox" id="daysOfWeek"  [value]= 1 (click)="setCheckbox($event,1)"/>  Monday</label>
+              <label><input type="checkbox" id="daysOfWeek"  [value]= 2 (click)="setCheckbox($event,2)"/>  Tuesday</label>
+              <label><input type="checkbox" id="daysOfWeek" [value]= 3 (click)="setCheckbox($event,3)"/>  Wednesday</label>
+              <label><input type="checkbox" id="daysOfWeek" [value]= 4 (click)="setCheckbox($event,4)"/>  Thursday</label>
+              <label><input type="checkbox" id="daysOfWeek" [value]= 5 (click)="setCheckbox($event,5)"/>  Friday</label>
+              <label><input type="checkbox" id="daysOfWeek" [value]= 6 (click)="setCheckbox($event,6)"/>  Saturday</label>
+              <label><input type="checkbox" id="daysOfWeek" [value]= 0 (click)="setCheckbox($event,0)"/>  Sunday</label>
+          </div>
+      </div>
+
+
+
+
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "deleteClick(id)">Delete</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click) = "modalRef.hide()">Cancel</button>
+        </div>
+      </ng-template>
+
+
+      </div>
+    </div>
+  </div>
+
+<!-- The Edit Event Modal -->
+
+
+
+<!-- The Add Event Modal -->
+<div  class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+
+      <ng-template #addModal>
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add Event </h4>
+        <button type="button" class="close" data-dismiss="modal" (click) = "modalRef.hide()">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+
+        <div class="form-group">
+          <label>Start</label>
+          <div class="input-group date" id="startDate">
+            <input class="form-control" id="date-input" type="date" name="date-input" [(ngModel)]="date">
+            <input class="form-control" id="time-input" type="time" name="time-input" [(ngModel)]="time">
+          </div>
+      </div>
+      <div class="form-group">
+          <div class="checkbox">
+              <label><input type="checkbox" id="chkIsFullDay" checked="checked" />  Is Full Day event</label>
+          </div>
+      </div>
+
+
+      <div class="form-group">
+          <label>End</label>
+          <div class="input-group date" id="endDate">
+            <input class="form-control" id="date-input" type="date" name="date-input" placeholder="date">
+            <input class="form-control" id="time-input" type="time" name="time-input" placeholder="time">
+          </div>
+      </div>
+
+
+
+
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "deleteClick(id)">Delete</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click) = "modalRef.hide()">Cancel</button>
+      </div>
+    </ng-template>
+
+
+    </div>
+  </div>
+</div>
+<!-- The Add Event Modal -->
+
+
+<!-- The Calendar -->
+
+  <div class="card">
+    <div class="card-body">
+      <full-calendar #calendar
+      [options]="calendarOptions"
+      ></full-calendar>
+    </div>
+  </div>
+
+<!-- The Calendar -->
+

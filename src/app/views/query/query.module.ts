@@ -7,6 +7,7 @@ import { DriverQueryComponent } from './driver-query/driver-query.component';
 import { ManagerQueryComponent } from './manager-query/manager-query.component';
 import { FormsModule } from '@angular/forms';
 import { DataTablesModule } from 'angular-datatables';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 
@@ -16,7 +17,9 @@ import { DataTablesModule } from 'angular-datatables';
     CommonModule,
     QueryRoutingModule,
     FormsModule,
-    DataTablesModule
+    DataTablesModule,
+    ModalModule.forRoot(),
+
   ]
 })
 export class QueryModule { }

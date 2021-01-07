@@ -1,7 +1,9 @@
 import { RouteInfoService } from './../../../_core/_services/route-info.service';
+import { DriverInfoService } from './../../../_core/_services/driver-info.service';
+import { CarInfoService } from './../../../_core/_services/car-info.service';
 import {Component, ElementRef, OnInit, ViewChild, OnDestroy, AfterViewInit } from '@angular/core';
 import { ArrangementInfoService } from './../../../_core/_services/arrangement-info.service';
-
+import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
 
@@ -14,7 +16,9 @@ import { DataTableDirective } from 'angular-datatables';
 })
 export class ManagerQueryComponent implements OnInit {
 
-  constructor(private service: ArrangementInfoService, private routeService: RouteInfoService) { }
+  @ViewChild('infoModal') public infoModal: ModalDirective;
+
+  constructor(private service: ArrangementInfoService, private routeService: RouteInfoService, private carService :CarInfoService,  private driverService: DriverInfoService) { }
 
   @ViewChild(DataTableDirective, {static: false})
 
@@ -24,6 +28,9 @@ export class ManagerQueryComponent implements OnInit {
 
   arrangementInfoData : any = [];
   routeInfoData : any = [];
+  driverInfoData: any = [];
+  carInfoData: any = [];
+
 
   input_route : string ;
   input_date : string;
@@ -66,6 +73,17 @@ export class ManagerQueryComponent implements OnInit {
     this.routeService.getData().subscribe( data => {
       this.routeInfoData = data;
     })
+
+    this.driverService.getData().subscribe( data => {
+      this.driverInfoData = data
+      console.log(this.driverInfoData);
+    })
+
+    this.carService.getData().subscribe(data =>{
+      this.carInfoData = data
+      console.log(this.carInfoData)
+  });
+
   }
 
   search (event){
@@ -75,5 +93,20 @@ export class ManagerQueryComponent implements OnInit {
       this.rerender();
     });
   }
+
+  findCarDetail(data){
+    return this.carInfoData.filter(x => x.carId === data.carId)
+
+}
+
+findRouteDetail(data){
+  return this.routeInfoData.filter(x => x.routeId === data.routeId)
+
+}
+
+findDriverDetail(data){
+  return this.driverInfoData.filter(x => x.driverId === data.driverId)
+
+}
 
 }

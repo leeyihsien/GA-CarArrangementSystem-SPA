@@ -110,16 +110,8 @@ export class CarBookingComponent implements OnInit, AfterViewInit{
 
   ngOnInit(): void {
     //預設值
-    // this.arrangementId = this.newBooking.arrangementId;
-    // this.userId = this.newBooking.userId;
-    // this.userName = this.newBooking.userName;
-    // this.userPhone = this.newBooking.userPhone;
-    // this.routeId = this.newBooking.routeId;
-    // this.departureTime = this.newBooking.departureTime;
     this.carId = 'no';
-    // this.driverId = this.newBooking.driverId;
      this.arrangementStatus = 'test';
-    // this.arrangementRemark = this.newBooking.arrangementRemark;
   }
 
 

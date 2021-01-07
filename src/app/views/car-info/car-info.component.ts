@@ -1,6 +1,5 @@
 import { AddEditCarInfoComponent } from './add-edit-car-info/add-edit-car-info.component';
 import { CarInfoService } from './../../_core/_services/car-info.service';
-import { Pagination, PaginatedResult } from './../../_core/_models/pagination';
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild, OnDestroy, AfterViewInit  } from '@angular/core';
 import Swal from 'sweetalert2';

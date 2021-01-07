@@ -16,7 +16,8 @@
             <div class="input-group">
               <select class="form-control" [(ngModel)]="input_car">
                 <option *ngFor="let car of carInfoData" value="{{car.carId}}">{{car.carId}}</option>
-              </select>            </div>
+              </select>
+            </div>
           </div>
 
           <div class="col-lg-4">
@@ -34,14 +35,12 @@
           </div>
 
         </div>
-
-
-
-
         </div>
 
+
+
           <div class="card-body">
-          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover stripe nowrap">
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover stripe">
             <!-- 宣告欄位名稱 -->
             <thead>
               <tr>
@@ -56,7 +55,8 @@
 
            <!-- 宣告資料表表身 -->
             <tbody>
-              <tr *ngFor="let data of arrangementInfoData">
+              <ng-container *ngFor="let data of arrangementInfoData" >
+              <tr>
                 <td>{{data.arrangementId}}</td>
                 <td>{{data.carId}}</td>
                 <td>{{data.departureTime}}</td>
@@ -67,20 +67,91 @@
                 </td>
                 <td>
                   <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
-                  <button type="button" class="btn btn-primary">
+                  <button type="button" class="btn btn-primary" data-toggle="modal" (click)="infoModal.show()">
                     <i class="icon-eye icons font-1x2 "></i>
                     Details
                   </button>
                   </div>
                 </td>
               </tr>
+
+
+                <div bsModal #infoModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-info" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title">{{data.arrangementId}}</h4>
+                        <button type="button" class="close" (click)="infoModal.hide()" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <h3>Car Info</h3>
+                        <div *ngFor="let Cardetail of findCarDetail(data)">
+                          <div class="row align-items-start">
+                            <b class="col-6 col-sm-3">Car Id </b>
+                            <div class="col-6 col-sm-3">{{Cardetail.carId}}</div>
+                          </div>
+                          <div class="row align-items-start" >
+                            <b class="col-6 col-sm-3">Car Brand </b>
+                          <div class="col-6 col-sm-3">{{Cardetail.carBrand}}</div>
+                          </div>
+                        </div>
+                        <hr>
+                        <h3>Route Info</h3>
+                        <div *ngFor="let Routedetail of findRouteDetail(data)">
+                          <div class="row align-items-start" >
+                            <b class="col-6 col-sm-3">Route Id </b>
+                            <div class="col-6 col-sm-3">{{Routedetail.routeId}}</div>
+                          </div>
+                          <div class="row align-items-start" >
+                            <b class="col-6 col-sm-3">Route Name</b>
+                            <div class="col-6 col-sm-3">{{Routedetail.routeName}}</div>
+                          </div>
+                        </div>
+                        <hr>
+                        <h3>Driver Info</h3>
+                        <div *ngFor="let Driverdetail of findDriverDetail(data)">
+                          <div class="row align-items-start" >
+                            <b class="col-6 col-sm-3">Driver Id</b>
+                            <div class="col-6 col-sm-3">{{Driverdetail.driverId}}</div>
+                          </div>
+                          <div class="row align-items-start" >
+                            <b class="col-6 col-sm-3">Driver Name</b>
+                            <div class="col-6 col-sm-3">{{Driverdetail.driverName}}</div>
+                          </div>
+                          <div class="row align-items-start" >
+                            <b class="col-6 col-sm-3">Driver Phone</b>
+                            <div class="col-6 col-sm-3">{{Driverdetail.driverPhone}}</div>
+                          </div>
+                        </div>
+                        <hr>
+                        <h3>Arrangement Remark</h3>
+                        <p>{{data.arrangementRemark}}</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" (click)="infoModal.hide()">Close</button>
+                      </div>
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
+              </ng-container>
             </tbody>
             <!-- 宣告資料表表身 -->
           </table>
-
       </div>
     </div>
     <!--/.col-->
   </div>
 </div><!--/.row-->
+
 </div>
+
+
+
+
+
+
+
+

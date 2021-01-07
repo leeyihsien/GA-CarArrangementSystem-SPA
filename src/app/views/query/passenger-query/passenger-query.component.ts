@@ -1,7 +1,12 @@
 import { ArrangementInfoService } from './../../../_core/_services/arrangement-info.service';
+import { DriverInfoService } from './../../../_core/_services/driver-info.service';
+import { RouteInfoService } from './../../../_core/_services/route-info.service';
+import { CarInfoService } from './../../../_core/_services/car-info.service';
 import {Component, ElementRef, OnInit, ViewChild, OnDestroy, AfterViewInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
+import { ModalDirective } from 'ngx-bootstrap/modal';
+
 
 
 @Component({
@@ -10,8 +15,9 @@ import { DataTableDirective } from 'angular-datatables';
   styleUrls: ['./passenger-query.component.css']
 })
 export class PassengerQueryComponent implements OnInit {
+  @ViewChild('infoModal') public infoModal: ModalDirective;
 
-  constructor(private service: ArrangementInfoService) { }
+  constructor(private service: ArrangementInfoService, private carService :CarInfoService, private routeService: RouteInfoService, private driverService: DriverInfoService) { }
 
 
   @ViewChild(DataTableDirective, {static: false})
@@ -21,8 +27,12 @@ export class PassengerQueryComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject<any>();
 
   arrangementInfoData : any = [];
-  input_id : string ;
+  carInfoData: any = [];
+  routeInfoData: any = [];
+  driverInfoData: any = [];
+  input_id : string = "" ;
   input_date : string;
+  isExpanded :boolean = false;
 
   ngAfterViewInit(): void {
     this.dtTrigger.next();
@@ -57,6 +67,22 @@ export class PassengerQueryComponent implements OnInit {
       console.log(this.arrangementInfoData);
       this.rerender();
     });
+
+    this.carService.getData().subscribe(data =>{
+      this.carInfoData = data
+      console.log(this.carInfoData)
+  });
+
+
+  this.routeService.getData().subscribe(data => {
+    this.routeInfoData = data;
+    console.log(this.routeInfoData);
+  })
+
+  this.driverService.getData().subscribe( data => {
+    this.driverInfoData = data
+    console.log(this.driverInfoData);
+  })
   }
 
   search (event){
@@ -65,6 +91,23 @@ export class PassengerQueryComponent implements OnInit {
       console.log(this.arrangementInfoData);
       this.rerender();
     });
+    this.isExpanded = true;
   }
+
+
+  findCarDetail(data){
+    return this.carInfoData.filter(x => x.carId === data.carId)
+
+}
+
+findRouteDetail(data){
+  return this.routeInfoData.filter(x => x.routeId === data.routeId)
+
+}
+
+findDriverDetail(data){
+  return this.driverInfoData.filter(x => x.driverId === data.driverId)
+
+}
 
 }

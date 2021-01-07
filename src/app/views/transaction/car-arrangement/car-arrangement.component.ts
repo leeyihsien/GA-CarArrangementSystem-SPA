@@ -26,6 +26,7 @@ export class CarArrangementComponent implements OnInit, OnDestroy {
   routeInfoData: any = [];
   arrangementData: any = [];
   driverInfoData: any = [];
+  filter: any = [];
   driverId : string ;
 
   public arrangement: Array<any> = [
@@ -154,15 +155,18 @@ export class CarArrangementComponent implements OnInit, OnDestroy {
 
     this.arrangementService.getByDate(inputValue).subscribe(item => {
 
-
       this.arrangementData = item;
 
       this.putIntoArray(this.arrangement, this.arrangementData)
+      this.filter =  Array.from(new Set(this.arrangement[0].data.map(x => x.routeId)));
+
 
     });
 
 
-      console.log(this.arrangement);
+
+    console.log(this.arrangement);
+    console.log(this.filter)
   }
 
 
@@ -215,6 +219,7 @@ export class CarArrangementComponent implements OnInit, OnDestroy {
 
 
   }
+
 
 
 }

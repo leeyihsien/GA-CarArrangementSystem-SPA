@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CarDriverService } from './car-driver.service';
+import { RouteScheduleService } from './route-schedule.service';
 
-describe('CarDriverService', () => {
-  let service: CarDriverService;
+describe('RouteScheduleService', () => {
+  let service: RouteScheduleService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CarDriverService);
+    service = TestBed.inject(RouteScheduleService);
   });
 
   it('should be created', () => {
